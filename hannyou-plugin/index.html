@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HANNYOU-Plugin の使い方 - ukagaka-irono</title>
+  <meta name="description" content="Paper サーバー向けプラグイン HANNYOU-Plugin（スペクモードと Knights Editor）の入れ方とコマンド。">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/theme.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../">ukagaka-irono</a>
+      <nav class="site-nav" aria-label="サイト">
+        <a href="../">一覧</a>
+        <a href="https://github.com/ukagaka-irono">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <p class="breadcrumb"><a href="../">一覧</a> &gt; Minecraft &gt; HANNYOU-Plugin</p>
+    <h1>HANNYOU-Plugin（汎用プラグイン）</h1>
+    <p class="intro">Paper サーバー向けのプラグインです。スペクモード（<code>/hannyou spec</code>）のために作りました。ほかの機能はおまけで、プレイヤーに「役職」を付けて装備・持ち物・ポーション効果を配る Knights Editor が入っています。</p>
+    <p class="meta"><a href="https://github.com/ukagaka-irono/HANNYOU-Plugin">リポジトリ</a> ・ <a href="https://github.com/ukagaka-irono/HANNYOU-Plugin/releases">Releases</a> ・ Paper 26.1.2 ・ Java 25 ・ Apache-2.0</p>
+
+    <div class="doc">
+      <nav class="toc" aria-labelledby="toc-title">
+        <h2 id="toc-title">目次</h2>
+        <ol>
+          <li><a href="#install">入れ方</a></li>
+          <li><a href="#spec">スペクモード</a></li>
+          <li><a href="#knights">役職</a></li>
+          <li><a href="#tryon">試着</a></li>
+          <li><a href="#commands">コマンド</a></li>
+          <li><a href="#config">設定</a></li>
+          <li><a href="#build">ビルド</a></li>
+        </ol>
+      </nav>
+
+      <div class="content">
+        <h2 id="install">入れ方</h2>
+        <ol>
+          <li><a href="https://github.com/ukagaka-irono/HANNYOU-Plugin/releases">Releases</a> から <code>HANNYOU-Plugin-&lt;版&gt;-all.jar</code> を落とします。</li>
+          <li>サーバーの <code>plugins/</code> に置きます。</li>
+          <li>サーバーを起動します。</li>
+        </ol>
+        <p>コマンドと GUI は、OP だけが使えます（コンソールからも使えます）。OP でないプレイヤーには、コマンド自体が出ません。</p>
+
+        <h2 id="spec">スペクモード</h2>
+        <p>観戦や進行役に向けた、特別なクリエイティブモードです。対象を省くと自分になります。</p>
+<pre><code>/hannyou spec [対象]
+/hannyou unspec [対象]</code></pre>
+        <ul>
+          <li>体・装備・持っている物・名前が、ほかのプレイヤーから見えなくなります（管理者も含む）。スペク中の人どうしは半透明で見えます。タブリストには出たままです。</li>
+          <li>プレイヤーや Mob を押したり押されたりせず、矢などもすり抜けます。感圧板・トリップワイヤー・スカルクセンサーも反応しません。</li>
+          <li>ブロックを壊す・置く、アイテムを捨てる・拾う、攻撃、乗り物に乗る、はできません。ダメージも受けません。</li>
+          <li>飛べますが、クリエイティブインベントリからアイテムは取り出せません。</li>
+          <li>解除すると、スペクを始めたときの持ち物に戻ります。</li>
+          <li>ログアウトや再起動をまたいでも続きます。スペク中はゲームモードを変えられません。</li>
+        </ul>
+        <p>見えなくするために、スペク中の人は <code>hannyou_spec</code> というチームに入ります。もとのチームには、解除したときに戻ります。</p>
+
+        <h2 id="knights">役職</h2>
+        <p>役職は、装備 5 か所・インベントリ 27 枠・ホットバー 9 枠・ポーション効果（I〜III）をまとめたものです。<code>/hannyou knights editor</code> でエディタが開きます。3 ページあって、下の矢印で切りかえます。</p>
+        <ol>
+          <li>1 ページ目: 左に頭・胴・脚・足・オフハンドのアイテムを置きます。右で role id（半角英数字とアンダースコア）・アイコン・表示名を決めます。表示名には <code>&amp;c</code> などのカラーコードが使えます。</li>
+          <li>2 ページ目: 上 3 段がインベントリ、4 段目がホットバーです。「手持ちから取り込み」で、いまの持ち物をそのまま入れられます。</li>
+          <li>3 ページ目: ポーションをクリックするたびに、なし → I → II → III → なし と変わります。</li>
+          <li>「保存」を押すと反映されます。「閉じる」は保存しません。</li>
+        </ol>
+        <p>プレイヤーに付けるときは <code>give</code> です。</p>
+<pre><code>/hannyou knights give @a warrior     # 全員に付ける
+/hannyou knights give Steve knight   # 一人に付ける</code></pre>
+        <ul>
+          <li>付けると role id のスコアボードタグが付き、装備・持ち物・効果が配られます。インベントリは役職の中身に置き換わります。</li>
+          <li>効果は時間無制限で、牛乳や不死のトーテムでは消えません。</li>
+          <li>別の役職に変えると、前の役職の効果は外れます。役職を消すと、持っている人からタグと効果が外れます（アイテムは残ります）。</li>
+        </ul>
+        <p><code>/hannyou knights list</code> の一覧では、左クリックで編集、右クリックでコピー、Shift + 左クリックで試着、コンパスで検索、下の剣で新しく作れます。</p>
+
+        <h2 id="tryon">試着</h2>
+        <p>役職を自分に一時的に当てて、見た目や効果を確かめられます。一覧の Shift + 左クリック、エディタの「試着する」、<code>/hannyou knights list &lt;role id&gt;</code> の【試着】から使えます。チャットの【試着を終了】で元に戻ります。ログアウト・リスポーン・プラグインの停止でも戻ります。</p>
+        <div class="warn">
+          <p>試着中にアイテムを捨てたりチェストに入れたりすると、アイテムが増えます。試着は信頼できる管理者だけが使う前提です。</p>
+        </div>
+
+        <h2 id="commands">コマンド</h2>
+        <p><code>/hannyou</code> や <code>/hannyou knights</code> だけを打つとヘルプが出ます。<code>&lt;対象&gt;</code> にはプレイヤー名か、<code>@a</code> <code>@s</code> <code>@p</code> <code>@r</code> などを書きます。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">コマンド</th><th scope="col">説明</th></tr></thead>
+            <tbody>
+              <tr><td><code>/hannyou spec [対象]</code></td><td class="wrap">スペクモードにする</td></tr>
+              <tr><td><code>/hannyou unspec [対象]</code></td><td class="wrap">スペクモードを解除する</td></tr>
+              <tr><td><code>/hannyou knights list</code></td><td class="wrap">役職一覧の GUI を開く</td></tr>
+              <tr><td><code>/hannyou knights list &lt;role id&gt;</code></td><td class="wrap">役職の中身と【編集】【試着】【削除】をチャットに出す</td></tr>
+              <tr><td><code>/hannyou knights editor [role id]</code></td><td class="wrap">役職を作る。role id を付けるとその役職を編集する</td></tr>
+              <tr><td><code>/hannyou knights give &lt;対象&gt; &lt;role id&gt;</code></td><td class="wrap">役職を付ける</td></tr>
+              <tr><td><code>/hannyou knights remove &lt;role id&gt;</code></td><td class="wrap">削除の確認画面を開く</td></tr>
+              <tr><td><code>/hannyou reload</code></td><td class="wrap"><code>config.yml</code> を読み直す</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="config">設定</h2>
+        <p><code>plugins/HANNYOU-Plugin/config.yml</code> です。変えたら <code>/hannyou reload</code> で反映されます。</p>
+<pre><code># 役職の作成・編集・削除などをサーバーのログと OP のチャットに記録する
+log-role-changes: true
+
+settings:
+  # 登録できる役職の最大数 (-1 = 無制限)
+  max-roles: -1
+  # 参加時に役職の装備・インベントリを再配布する (false の場合はポーション効果のみ再適用)
+  reapply-items-on-join: true</code></pre>
+        <p>役職のデータは <code>knights-role.yml</code> です。手で直すときは、サーバーを止めてからにしてください（動いている間に直すと、次の保存で上書きされます）。<code>uid</code> は変えないでください。</p>
+
+        <h2 id="build">ビルド</h2>
+<pre><code>./gradlew build</code></pre>
+        <p><code>build/libs/</code> に jar ができます。<code>./gradlew runServer</code> でテスト用のサーバーが起動します（はじめは <code>run/eula.txt</code> で EULA に同意します）。</p>
+        <p>ライセンスは <a href="https://github.com/ukagaka-irono/HANNYOU-Plugin/blob/main/LICENSE">Apache License 2.0</a> です。配るときは LICENSE と NOTICE を一緒に入れてください（ビルドした jar には自動で入ります）。</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><a href="https://github.com/ukagaka-irono">github.com/ukagaka-irono</a></div>
+  </footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>伺かスタジオの使い方 - ukagaka-irono</title>
+  <meta name="description" content="ブロックを積んで伺かのゴーストを作るアプリ「伺かスタジオ（Ukagaka Studio）」の使い方。">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/theme.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../">ukagaka-irono</a>
+      <nav class="site-nav" aria-label="サイト">
+        <a href="../">一覧</a>
+        <a href="https://github.com/ukagaka-irono">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <p class="breadcrumb"><a href="../">一覧</a> &gt; 伺か &gt; 伺かスタジオ</p>
+    <h1>伺かスタジオ（Ukagaka Studio）</h1>
+    <p class="intro">伺か（SSP）のゴーストを、Scratch のようにブロックを積んで作るアプリです。組んだブロックは栞 YAYA の辞書に訳して書き出すので、書き出したものはふつうの YAYA ゴーストです。YAYA で手書きしたゴーストに、ブロックで作ったトークを足すこともできます。</p>
+    <p class="meta"><a href="https://github.com/ukagaka-irono/ukagaka-studio">リポジトリ</a> ・ <a href="https://github.com/ukagaka-irono/ukagaka-studio/releases">Releases</a> ・ <a href="https://github.com/ukagaka-irono/ukagaka-studio/blob/main/README.en.md">English</a> ・ Windows 10 / 11 ・ なしライセンス 1.1</p>
+
+    <div class="doc">
+      <nav class="toc" aria-labelledby="toc-title">
+        <h2 id="toc-title">目次</h2>
+        <ol>
+          <li><a href="#env">動く環境</a></li>
+          <li><a href="#get">手に入れる</a></li>
+          <li><a href="#start">起動する</a></li>
+          <li><a href="#blocks">ブロックを組む</a></li>
+          <li><a href="#ssp">SSP に入れる</a></li>
+          <li><a href="#sstp">動いているゴーストで試す</a></li>
+          <li><a href="#update">ネットワーク更新</a></li>
+          <li><a href="#yaya">手書きの YAYA に足す</a></li>
+          <li><a href="#files">保存される場所</a></li>
+          <li><a href="#blocked">起動を止められたら</a></li>
+          <li><a href="#license">ライセンス</a></li>
+        </ol>
+      </nav>
+
+      <div class="content">
+        <p>「なし栞 + なしスタジオ」（作者: 月見里 彩葉）のフォークです。名前を変えて、独自に直しています。2.0 からは、独自の栞をやめて YAYA を使っています。もとのものは<a href="../nashi-shiori-studio-2/">こちら</a>。</p>
+
+        <h2 id="env">動く環境</h2>
+        <ul>
+          <li>伺かスタジオ（<code>ukagaka-studio.exe</code>）: Windows 10 / 11。表示に Microsoft Edge WebView2 ランタイムを使います（Windows 11 には入っています）。</li>
+          <li>書き出したゴースト: Windows 2000 以降。SSP の動作環境に合わせてあります。</li>
+        </ul>
+        <p>exe は 1 ファイルで、ランタイムのインストールは要りません。</p>
+
+        <h2 id="get">手に入れる</h2>
+        <p>ふつうは <a href="https://github.com/ukagaka-irono/ukagaka-studio/releases">Releases</a> の zip を使います。押すたびの最新がほしいときは、<a href="https://github.com/ukagaka-irono/ukagaka-studio/actions">Actions</a> の実行ページのいちばん下の Artifacts にあります（GitHub のログインが要ります。30 日で消えます）。</p>
+        <p>コード署名していないので、Windows に止められることがあります。そのときは<a href="#blocked">起動を止められたら</a>を見てください。</p>
+
+        <h2 id="start">起動する</h2>
+        <p><code>ukagaka-studio.exe</code> をダブルクリックします。はじめてなら「開く」→「お手本から始める」で、動くゴースト（あいさつ／好感度／時間で変わる／名前をきく／ゴースト間通信）を読みこんで中を見るのが早いです。</p>
+        <ul>
+          <li>保存していない変更は 1 分ごとに自動で保存します。保存のたびに上書き前のものを残すので、「開く」でプロジェクトの 🕘 から前の版を開けます。</li>
+          <li>画面の言語は、上のバーの English／日本語 で切りかえられます。</li>
+          <li>ポートは開きません。外への通信は、SSP と話すときの <code>127.0.0.1:9801</code> だけです。</li>
+        </ul>
+
+        <h2 id="blocks">ブロックを組む</h2>
+        <p>上のバーの「新規」で、ひな形ウィザードが開きます。ゴーストと 2 人の名前を入れて、はじめから入れておくもの（あいさつ・なでたときの反応・ランダムトーク・アラームなど）をえらびます。画面は、バーの下で トーク／セリフ／キャラと絵／ゴースト情報／書き出し に切りかえます。</p>
+        <ol>
+          <li>「トーク」の画面で、左の「イベント」から「起動したとき」などをキャンバスにドラッグします。</li>
+          <li>その下に「セリフ」の「◯◯が □□ と話す」をつなげます。欄の横の ☺ で、表情を変える印 <code>{表情:1}</code> や待つ印 <code>{待つ:500}</code> を入れられます。</li>
+          <li>右の「ためす」タブの ▶ で、しゃべる様子とさくらスクリプトを見ます。下に、いまの変数も出ます。</li>
+          <li>立ち絵は「キャラと絵」の画面で、用意した PNG を番号ごとに割り当てます。えらばなかった番号は、かんたんな立ち絵を自動で作ります。</li>
+          <li>「チェック」タブに、空のセリフ・無い変数・行き先のない選択肢などが出ます。赤い数字があったら、直してから書き出してください。</li>
+        </ol>
+        <h3>キー操作など</h3>
+        <ul>
+          <li><kbd>/</kbd> で、ブロックを名前でさがして置けます。Enter で置いて、そのまま文字を打てます。キーボードだけで組めます。</li>
+          <li><kbd>Ctrl</kbd>+<kbd>F</kbd> で、セリフや変数名からさがします。まとめて置きかえもできます。</li>
+          <li><kbd>Ctrl</kbd>+<kbd>C</kbd> / <kbd>Ctrl</kbd>+<kbd>V</kbd> でブロックをコピーできます。別のプロジェクトにもはりつけられます。</li>
+          <li>右クリックで、複製・部品にする・無効にする・メモ・たたむ・「YAYA を見る」などが出ます。</li>
+          <li><kbd>?</kbd> か <kbd>F1</kbd> で、つかいかたとキーの一覧が開きます。</li>
+        </ul>
+        <p>「部品」は、よく使う組みかたに名前を付けて取っておくものです。<code>.parts.json</code> にして人に渡せます。「YAYA を見る」では、そのかたまりがどんな YAYA の関数になるかを見られます。</p>
+
+        <h2 id="ssp">SSP に入れる</h2>
+        <p>「書き出し」の画面の「SSP に入れて動かす」を押します。</p>
+        <ul>
+          <li>SSP の場所（<code>ssp.exe</code>）は自動で探します。見つからないときは、欄にパスを入れて「この場所を使う」。</li>
+          <li>SSP の <code>ghost\</code> へ直接書き出して、そのゴーストに切り替えます。すでに動いていれば、栞だけ読み込み直します。</li>
+          <li>「保存するたびに SSP に入れる」を入れておくと、Ctrl+S のたびに反映されます。</li>
+        </ul>
+        <p>配るときは、同じ画面の「.nar を作る」です。できた <code>.nar</code> を SSP のウィンドウにドラッグ＆ドロップするとインストールできます。</p>
+
+        <h2 id="sstp">動いているゴーストで試す</h2>
+        <p>SSP とつながっていれば、「ためす」タブから、デスクトップで動いているゴーストで確かめられます。</p>
+        <ul>
+          <li>SSPでしゃべらせる: いま選んでいるトークをしゃべらせる</li>
+          <li>イベント送信: 選んでいるイベント（<code>OnMouseDoubleClick</code> など）を送る</li>
+          <li>話しかけてみる: ほかのゴーストのふりをして話しかける</li>
+        </ul>
+        <p>SSP の「SSTP を受け付ける」（既定でオン）が有効になっている必要があります。</p>
+
+        <h2 id="update">ネットワーク更新</h2>
+        <ol>
+          <li>「ゴースト情報」の「更新のありか」に、置き場所の URL を入れます。うしろに <code>/</code> を付けます（例: <code>https://example.com/ghost/ikagako/</code>）。</li>
+          <li>書き出すと、照合表の <code>updates2.dau</code> も一緒にできます。</li>
+          <li>フォルダの中身を、その URL の場所にまるごとアップロードします。必ずバイナリモードで送ってください。</li>
+          <li>使う人は、右クリックメニューの「ネットワーク更新」で新しくなります。</li>
+        </ol>
+        <p><code>md5 miss</code> などでうまくいかないときは、アップロードするフォルダを SSP のウィンドウにドロップすると SSP が作り直してくれるので、それで上書きしてください。ファイルを消したいときは、置き場所に <code>delete.txt</code> を置きます。</p>
+
+        <h2 id="yaya">手書きの YAYA に足す</h2>
+        <ol>
+          <li>「書き出し」の画面の「手書きの YAYA ゴーストにつなぐ」に、ゴーストのフォルダ（中に <code>ghost\master</code> があるもの）を入れて「つなぐ」を押します。</li>
+          <li>つないでいるあいだは、書き出すとそのゴーストに書きこみます。書くのは <code>studio_runtime.dic</code>・<code>studio_program.dic</code> と、<code>yaya.txt</code> の印の付いた数行だけです。手書きの辞書には触りません。</li>
+        </ol>
+        <ul>
+          <li>同じイベントは手書きが優先です。ブロックも動かしたいときは、手書きの関数の中で <code>Studio.Event('OnBoot')</code> をよびます。</li>
+          <li>ブロックの変数は、手書きの YAYA から <code>Studio.var['名前']</code> で読み書きできます。</li>
+        </ul>
+
+        <h2 id="files">保存される場所</h2>
+        <p><code>ukagaka-studio.exe</code> と同じフォルダにできます。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">場所</th><th scope="col">中身</th></tr></thead>
+            <tbody>
+              <tr><td><code>projects\</code></td><td class="wrap">プロジェクト</td></tr>
+              <tr><td><code>projects\.history\</code></td><td class="wrap">プロジェクトの前の版</td></tr>
+              <tr><td><code>output\</code></td><td class="wrap">書き出したゴースト（書き出し先を変えていないとき）</td></tr>
+              <tr><td><code>parts.json</code></td><td class="wrap">部品</td></tr>
+              <tr><td><code>ukagaka-studio.json</code></td><td class="wrap">最後に開いたプロジェクト・書き出し先・ウィンドウの大きさ・言語</td></tr>
+              <tr><td><code>webview-data\</code></td><td class="wrap">WebView2 の作業フォルダ（消しても作り直されます）</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>人からもらったプロジェクト（.json）は、開く前に中身を確かめてください。立ち絵はパスで指定されているので、書き出すとその画像がゴーストに入ります。</p>
+
+        <h2 id="blocked">起動を止められたら</h2>
+        <p>「アプリケーション制御ポリシーによってブロックされました」と出るのは、Windows 11 のスマートアプリコントロールが、署名のない exe を止めているためです。</p>
+        <ol>
+          <li>少し待ってから、もう一度実行してみる（通ることがありますが、確実ではありません）。</li>
+          <li>公的な認証局のコード署名証明書で署名する。</li>
+          <li>スマートアプリコントロールを切る（Windows セキュリティ →「アプリとブラウザーの制御」）。</li>
+        </ol>
+        <div class="warn">
+          <p>スマートアプリコントロールは、一度オフにすると Windows を入れ直すまで戻せません。</p>
+        </div>
+        <p>自分でビルドするときは、Visual Studio の「C++ によるデスクトップ開発」を入れて、リポジトリで実行します。</p>
+<pre><code>.\build.ps1            # スタジオを作る
+.\build.ps1 -Test      # テストも走らせる
+.\build.ps1 -Release   # 配布用の zip を作る</code></pre>
+
+        <h2 id="license">ライセンス</h2>
+        <p><a href="https://github.com/ukagaka-irono/ukagaka-studio/blob/main/LICENSE">なしライセンス 1.1</a> です（もとのプロジェクトの独自ライセンスで、許諾型）。だれでも無償で、目的を問わず、使う・直す・配ることができます。</p>
+        <p>書き出したゴーストを配るときは、ライセンス文の同梱も、作者名やソフト名の表記も要りません。有償で配ってもかまいません。</p>
+        <p>伺かスタジオそのもの（exe やソース）を配る・フォークするときは、<code>LICENSE</code> を一緒に入れて、変えたことと、もとのプロジェクトの場所と作者名がわかるようにしてください。くわしくは README の「<a href="https://github.com/ukagaka-irono/ukagaka-studio#ライセンス">ライセンス</a>」を見てください。</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><a href="https://github.com/ukagaka-irono">github.com/ukagaka-irono</a></div>
+  </footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

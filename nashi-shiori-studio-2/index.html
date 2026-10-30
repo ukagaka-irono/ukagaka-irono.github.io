@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>なし栞 + なしスタジオの使い方 - ukagaka-irono</title>
+  <meta name="description" content="伺かの栞「なし栞」と、ブロックでゴーストを作る「なしスタジオ」の使い方。">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/theme.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../">ukagaka-irono</a>
+      <nav class="site-nav" aria-label="サイト">
+        <a href="../">一覧</a>
+        <a href="https://github.com/ukagaka-irono">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <p class="breadcrumb"><a href="../">一覧</a> &gt; 伺か &gt; なし栞 + なしスタジオ</p>
+    <h1>なし栞 + なしスタジオ</h1>
+    <p class="intro">伺か（SSP）用の栞（SHIORI）「なし栞」と、その栞を使うゴーストをブロックを積んで作るアプリ「なしスタジオ」の一式です。月見里 彩葉さんの<a href="https://github.com/yanashi-interface/nashi-shiori-studio">なし栞 + なしスタジオ</a>のフォークで、<a href="../ukagaka-studio/">伺かスタジオ</a>のもとになったものです。</p>
+    <p class="meta"><a href="https://github.com/ukagaka-irono/nashi-shiori-studio-2">リポジトリ</a> ・ <a href="https://github.com/yanashi-interface/nashi-shiori-studio">もとのリポジトリ</a> ・ Windows 10 / 11 ・ なしライセンス 1.1</p>
+
+    <div class="doc">
+      <nav class="toc" aria-labelledby="toc-title">
+        <h2 id="toc-title">目次</h2>
+        <ol>
+          <li><a href="#diff">伺かスタジオとのちがい</a></li>
+          <li><a href="#get">手に入れる</a></li>
+          <li><a href="#usage">使い方</a></li>
+          <li><a href="#shiori">なし栞のしくみ</a></li>
+          <li><a href="#test">SSP なしで試す</a></li>
+          <li><a href="#license">ライセンス</a></li>
+        </ol>
+      </nav>
+
+      <div class="content">
+        <h2 id="diff">伺かスタジオとのちがい</h2>
+        <p>使い方はほとんど同じです。ちがうのは、ゴーストが使う栞です。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col"></th><th scope="col">なし栞 + なしスタジオ</th><th scope="col">伺かスタジオ</th></tr></thead>
+            <tbody>
+              <tr><td>アプリ</td><td><code>nashi-studio.exe</code></td><td><code>ukagaka-studio.exe</code></td></tr>
+              <tr><td>栞</td><td>なし栞 <code>nashi.dll</code></td><td>YAYA <code>yaya.dll</code></td></tr>
+              <tr><td>会話の入れ方</td><td class="wrap">ブロックのまま <code>ghost.json</code> に入れる</td><td class="wrap">YAYA の辞書に訳して書き出す</td></tr>
+              <tr><td>手書きの辞書と混ぜる</td><td>できない</td><td>できる</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>動く環境は、なしスタジオが Windows 10 / 11（WebView2 が要ります）、なし栞と書き出したゴーストが Windows 2000 以降です。</p>
+
+        <h2 id="get">手に入れる</h2>
+        <p>このフォークには Releases がありません。もとのリポジトリの <a href="https://github.com/yanashi-interface/nashi-shiori-studio/releases">Releases</a> か <a href="https://github.com/yanashi-interface/nashi-shiori-studio/actions">Actions</a>（ログインが要ります）を見てください。Actions の Artifacts には、スタジオ一式の <code>nashi-studio-…</code> と、栞だけの <code>nashi-dll-…</code> があります。</p>
+        <p>自分でビルドするときは、Visual Studio の「C++ によるデスクトップ開発」を入れて <code>.\build.ps1</code> を実行します。署名していない exe が止められたときは、<a href="../ukagaka-studio/#blocked">伺かスタジオのページ</a>と同じように対処してください。</p>
+
+        <h2 id="usage">使い方</h2>
+        <ol>
+          <li><code>nashi-studio.exe</code> をダブルクリックします。はじめてなら「開く」→「お手本から始める」が早いです。</li>
+          <li>左の「イベント」から「起動したとき」などをドラッグして、その下に「セリフ」の「◯◯が □□ と話す」をつなげます。</li>
+          <li>右の「ためす」タブの ▶ で、しゃべる様子を見ます。</li>
+          <li>「ゴースト」タブの「立ち絵の画像」で PNG を割り当て、「うごき」でアニメーションを作ります。</li>
+          <li>「チェック」タブの赤い数字を直します。</li>
+          <li>「書き出し」タブの「SSP に入れて動かす」で SSP に入れます。配るときは「.nar を作る」です。</li>
+        </ol>
+        <p>SSTP 連携とネットワーク更新（「ゴースト」タブの「更新のありか」）も、<a href="../ukagaka-studio/#sstp">伺かスタジオ</a>と同じように使えます。SSP を動かしたまま書き出し直すと、栞が数秒で <code>ghost.json</code> を読み直します。</p>
+        <p>プロジェクトなどは、<code>nashi-studio.exe</code> と同じフォルダの <code>projects\</code>・<code>output\</code>・<code>nashi-studio.json</code> に保存されます。exe のとなりに <code>nashi.dll</code> を置くと、埋め込みのものよりそちらが使われます。</p>
+
+        <h2 id="shiori">なし栞のしくみ</h2>
+        <ul>
+          <li>SHIORI/3.0 の DLL（32bit）です。起動時に、DLL と同じフォルダの <code>ghost.json</code> を読み込みます。</li>
+          <li>SSP から来たイベントに合うブロックを実行して、さくらスクリプトを返します。</li>
+          <li>ランダムトークは、直近に出したものを候補から外します。</li>
+          <li>変数は、終了時と 2 分ごとに <code>nashi_save.json</code> に保存されます。</li>
+          <li><code>OnMouseMove</code> が同じ場所で続くと、独自の <code>OnNadeNade</code>（なでられたとき）を作ります。SSP にはないイベントです。</li>
+          <li>ゴースト間通信（<code>OnCommunicate</code>）と SAORI に対応しています。</li>
+        </ul>
+
+        <h2 id="test">SSP なしで試す</h2>
+<pre><code>.\build.ps1 -Test
+.\shiori\dist\test_host.exe .\output\なしちゃん\ghost\master OnBoot OnMouseDoubleClick:0,0,0,0,Head OnClose</code></pre>
+        <p><code>イベント名:参照0,参照1,...</code> の形で並べます。<code>OnSecondChange:0,1*200</code> のように <code>*回数</code> を付けるとくりかえせます。</p>
+
+        <h2 id="license">ライセンス</h2>
+        <p><a href="https://github.com/ukagaka-irono/nashi-shiori-studio-2/blob/main/LICENSE">なしライセンス 1.1</a>（許諾型の独自ライセンス）。Copyright (c) 2026 月見里 彩葉。書き出したゴーストを配るときは、ライセンス文も作者名も要りません。ソフトそのものを配る・フォークするときの条件は <code>LICENSE</code> を見てください。</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><a href="https://github.com/ukagaka-irono">github.com/ukagaka-irono</a></div>
+  </footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

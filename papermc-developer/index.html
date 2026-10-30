@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>papermc-developer の使い方 - ukagaka-irono</title>
+  <meta name="description" content="PaperMC のプラグインを AI と一緒に作るスキル papermc-developer の入れ方と使い方。">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/theme.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../">ukagaka-irono</a>
+      <nav class="site-nav" aria-label="サイト">
+        <a href="../">一覧</a>
+        <a href="https://github.com/ukagaka-irono">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <p class="breadcrumb"><a href="../">一覧</a> &gt; Minecraft &gt; papermc-developer</p>
+    <h1>papermc-developer</h1>
+    <p class="intro">Minecraft の PaperMC（Paper・Folia・Velocity）のプラグインを、AI と一緒に作る・直す・動かして確かめる・配るためのスキルです。日本語で「〜するプラグインを作って」「エラーを直して」と頼むと、AI がこのスキルを使って作業します。Paper 1.7.10 から 26.x まで、どの版向けにも作れます。</p>
+    <p class="meta"><a href="https://github.com/ukagaka-irono/papermc-developer">リポジトリ</a> ・ Claude Code / Codex / Antigravity など ・ Unlicense</p>
+
+    <div class="doc">
+      <nav class="toc" aria-labelledby="toc-title">
+        <h2 id="toc-title">目次</h2>
+        <ol>
+          <li><a href="#need">要るもの</a></li>
+          <li><a href="#install">入れ方</a></li>
+          <li><a href="#usage">使い方</a></li>
+          <li><a href="#files">プロジェクトに残るもの</a></li>
+          <li><a href="#server">テストサーバー</a></li>
+          <li><a href="#permissions">許可の確認を減らす</a></li>
+          <li><a href="#update">更新</a></li>
+        </ol>
+      </nav>
+
+      <div class="content">
+        <h2 id="need">要るもの</h2>
+        <ul>
+          <li>AI と会話できる開発道具（Claude Code、Codex、Antigravity など）</li>
+          <li>JDK: Gradle を動かす Java 17 以上。テストサーバーには、その版が動く Java（1.16.5 以前は 8、1.17〜1.20.4 は 17、1.20.5〜1.21 は 21、26.x は 25）。無ければ、AI が確認してから Eclipse Temurin を入れます。</li>
+          <li>PowerShell: Windows は最初から入っている 5.1 で動きます。macOS / Linux では PowerShell 7（<code>pwsh</code>）を入れてください。</li>
+          <li>テストサーバーを動かすときだけ、Minecraft の EULA への同意（はじめに AI が聞きます）</li>
+        </ul>
+        <p>Gradle や Paper のサーバーは、スクリプトが要るときに公式から取ってきます。</p>
+
+        <h2 id="install">入れ方</h2>
+        <h3>Claude Code</h3>
+        <p>プラグインのプロジェクトのフォルダ（これから作るなら空のフォルダ）で Claude Code を開いて:</p>
+<pre><code>claude plugin marketplace add ukagaka-irono/papermc-developer
+claude plugin install papermc-developer --scope project</code></pre>
+        <p>入れたら、Claude Code をいったん終了して開き直します（入れた直後のセッションには読み込まれません）。<code>claude plugin list</code> に <code>papermc-developer</code> が出れば入っています。</p>
+        <p><code>--scope project</code> はいまのプロジェクトだけ（<code>.claude/settings.json</code> に書かれ、リポジトリで共有されます）、<code>--scope user</code> はどのプロジェクトでも、です。消すときは <code>claude plugin uninstall papermc-developer --scope project</code>（入れたときと同じ <code>--scope</code>）。</p>
+        <h3>Codex / Antigravity など</h3>
+        <p>GitHub の Code → Download ZIP で落として展開し、中の <code>skills/papermc-developer/</code> を、プロジェクトの <code>.agents/skills/</code> に置きます。置いたら、いったん終了して開き直します。</p>
+<pre><code>プロジェクト\
+  .agents\
+    skills\
+      papermc-developer\
+        SKILL.md
+        scripts\
+        references\
+        templates\
+  src\
+  build.gradle.kts</code></pre>
+        <p>どのプロジェクトでも使うなら、Codex は <code>%USERPROFILE%\.agents\skills\</code>、Antigravity は <code>%USERPROFILE%\.gemini\antigravity\skills\</code> に置きます。</p>
+
+        <h2 id="usage">使い方</h2>
+        <p>日本語でそのまま頼みます。例えば:</p>
+<pre><code>セットアップして
+夜をスキップする投票のプラグインを作りたい
+Folia でも動くようにして
+Velocity のプラグインを作って
+/home コマンドを足して
+チェックして
+サーバーで動かして見せて
+配布用の jar を作って
+Paper を最新にして</code></pre>
+        <p>要る資料とスクリプトは、AI が自分で読んで使います。何ができるかは「できる？」と聞けば答えます。すでにあるプラグインで使うなら、まず「セットアップして」と頼むと、コードから <code>PLUGIN.md</code> を下書きします。</p>
+
+        <h2 id="files">プロジェクトに残るもの</h2>
+        <p>スキルはプロジェクトにスクリプトをコピーしません。置くのは次のファイルだけです。</p>
+        <ul>
+          <li><code>PLUGIN.md</code>: そのプラグインのこと（何をするか、対象の版、コマンドと権限、設定、決まり、確かめ方）。AI が作業の前に読みます。</li>
+          <li><code>AGENTS.md</code>、<code>CLAUDE.md</code>: <code>PLUGIN.md</code> を読むこと、スキルを使うことだけを書いた短い案内</li>
+          <li><code>.gitignore</code>、<code>.gitattributes</code>、<code>.editorconfig</code>（無いときだけ）</li>
+          <li><code>.github/workflows/check.yml</code>、<code>release.yml</code>（任意）</li>
+        </ul>
+        <p>落としてきた Gradle やサーバーの jar、テストサーバー、設定は、<code>%LOCALAPPDATA%\papermc-developer</code> に置かれます（<code>PAPERMCDEV_HOME</code> で変えられます）。</p>
+
+        <h2 id="server">テストサーバー</h2>
+        <p>ふだん使っているサーバーとは別に、プロジェクトごとのテスト用サーバーを作ります。<code>127.0.0.1</code> だけで待ち受けるので、ほかの PC からは入れません。自分のクライアントで <code>localhost</code> に入って触れます。AI は RCON でコマンドを送って結果を見ます。</p>
+        <p>自分のターミナルでコンソールを触りたいときは、ひな形に入っている <code>./gradlew runServer</code> も使えます。</p>
+
+        <h2 id="permissions">許可の確認を減らす</h2>
+        <p>Claude Code は、スクリプトを実行するたびに許可を聞きます。読み取りや検査だけのスクリプトは、スキルを使っているあいだは許可してありますが、それ以外のときも聞かれたくなければ <code>.claude/settings.json</code> の <code>permissions.allow</code> に足します。</p>
+<pre><code>{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -NoProfile -ExecutionPolicy Bypass -File *papermc-developer*scripts/doctor.ps1*)",
+      "Bash(powershell -NoProfile -ExecutionPolicy Bypass -File *papermc-developer*scripts/check.ps1*)",
+      "Bash(powershell -NoProfile -ExecutionPolicy Bypass -File *papermc-developer*scripts/server-log.ps1*)"
+    ]
+  }
+}</code></pre>
+        <p><code>run-server.ps1</code> はサーバーを起動し、<code>rcon.ps1</code> はサーバーにコマンドを送ります。これを許可に入れるかは、そのつもりで決めてください。</p>
+
+        <h2 id="update">更新</h2>
+        <ul>
+          <li>Claude Code: <code>claude plugin marketplace update papermc-developer</code> のあと <code>claude plugin update papermc-developer</code>。そのあと Claude Code を開き直します。</li>
+          <li>フォルダのコピー: AI に「スキルを更新して」と頼むか、ZIP を落とし直して置き換えます。</li>
+        </ul>
+        <p>このスキルにバージョン番号はなく、GitHub の最新のコミットを追います。</p>
+        <p>ライセンスは <a href="https://github.com/ukagaka-irono/papermc-developer/blob/main/LICENSE">Unlicense</a>（パブリックドメイン）で、作ったプラグインのライセンスとは関係ありません。構成は、伺かのゴースト開発のためのスキル <a href="https://github.com/ukatech/ukagaka-developer">ukatech/ukagaka-developer</a> にならっています。</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><a href="https://github.com/ukagaka-irono">github.com/ukagaka-irono</a></div>
+  </footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

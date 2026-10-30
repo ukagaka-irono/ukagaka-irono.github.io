@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>pono-droid の使い方 - ukagaka-irono</title>
+  <meta name="description" content="伺かのゴーストを Android で動かすベースウェア pono-droid の入れ方と使い方。">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/theme.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../">ukagaka-irono</a>
+      <nav class="site-nav" aria-label="サイト">
+        <a href="../">一覧</a>
+        <a href="https://github.com/ukagaka-irono">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <p class="breadcrumb"><a href="../">一覧</a> &gt; 伺か &gt; pono-droid</p>
+    <h1>pono-droid</h1>
+    <p class="intro">伺か（ukagaka）のゴーストを Android で動かすベースウェアです。ゴーストをほかのアプリの上に常駐させます。SHIORI は YAYA・里々・華和梨・Kagari を Android 向けにビルドして使っています。</p>
+    <p class="meta"><a href="https://github.com/ukagaka-irono/pono-droid">リポジトリ</a> ・ <a href="https://github.com/ukagaka-irono/pono-droid/releases">Releases</a> ・ Android 8.0 以上 ・ Apache-2.0</p>
+
+    <div class="doc">
+      <nav class="toc" aria-labelledby="toc-title">
+        <h2 id="toc-title">目次</h2>
+        <ol>
+          <li><a href="#features">できること</a></li>
+          <li><a href="#install">入れ方</a></li>
+          <li><a href="#usage">使い方</a></li>
+          <li><a href="#controls">操作</a></li>
+          <li><a href="#limits">できないこと</a></li>
+          <li><a href="#build">ビルド</a></li>
+        </ol>
+      </nav>
+
+      <div class="content">
+        <div class="note">
+          <p>開発中です。動作確認は moto g05（Android 15）と、YAYA 製のゴースト 1 体で行っています。</p>
+        </div>
+
+        <h2 id="features">できること</h2>
+        <ul>
+          <li><code>.nar</code> からゴーストとバルーンをインストール</li>
+          <li>ホーム画面やほかのアプリの上に、キャラクター（<code>\0</code> / <code>\1</code>）と吹き出しを表示</li>
+          <li>シェルの透過（PNG のアルファ / <code>.pna</code> / 左上の色）、<code>surfaces.txt</code> の element と SERIKO（新旧両形式）</li>
+          <li>さくらスクリプトの再生（文字送り、ウェイト、選択肢、<code>\![raise,...]</code> など）</li>
+          <li>SSP 互換のネットワーク更新（<code>updates2.dau</code> / <code>updates.txt</code>）</li>
+          <li>辞書の文字コードは UTF-8 と Shift_JIS（CP932）</li>
+          <li>ゴーストは 3 体まで同時に動かせます</li>
+        </ul>
+        <p>対応しているイベントとタグの一覧は、README の「<a href="https://github.com/ukagaka-irono/pono-droid#ssp-との互換性">SSP との互換性</a>」にあります。</p>
+
+        <h2 id="install">入れ方</h2>
+        <ol>
+          <li><a href="https://github.com/ukagaka-irono/pono-droid/releases">Releases</a> から APK を落としてインストールします。まだ版が出ていないときは<a href="#build">自分でビルド</a>してください。</li>
+          <li>起動して、「他のアプリの上に重ねて表示」を許可します。常駐中の通知から終了・更新するので、通知の許可も求められます。</li>
+        </ol>
+
+        <h2 id="usage">使い方</h2>
+        <ol>
+          <li>「.nar をインストール」からゴーストの <code>.nar</code> を選びます。</li>
+          <li>一覧の「起動」を押すと、ゴーストが出てきます。</li>
+          <li>2 体目からは、一覧の「一緒に起動」か、ゴーストのメニューの「ほかのゴーストを呼ぶ」で起動します。一覧の「起動」は、そのゴーストだけを動かします。</li>
+          <li>終わるときは、通知の「終了」かアプリの「終了」です。</li>
+        </ol>
+        <p>アプリの「設定」で、読み上げ・SSTP・壁紙・カレンダー・マイク・メールなどを使うかどうか選べます。どれも最初はオフです。カレンダーとマイクは、選んだときに許可を求めます。</p>
+
+        <h2 id="controls">操作</h2>
+        <p>メニューの開き方はゴーストによって違います（ダブルタップ、3 回タップなど）。右クリックは長押し、中クリックは 2 本指で叩くのが代わりです。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">操作</th><th scope="col">動き</th></tr></thead>
+            <tbody>
+              <tr><td>キャラクターをタップ</td><td class="wrap"><code>OnMouseClick</code>。続けて叩くと <code>OnMouseDoubleClick</code>、3 回目以降は <code>OnMouseMultipleClick</code></td></tr>
+              <tr><td>キャラクターをドラッグ</td><td class="wrap">移動。位置は覚えておきます</td></tr>
+              <tr><td>当たり判定の上で指を動かす</td><td class="wrap">移動せずに、なでる（<code>OnMouseMove</code>）</td></tr>
+              <tr><td>当たり判定の上をさっと払う</td><td class="wrap"><code>OnMouseGesture</code>（8 方向）</td></tr>
+              <tr><td>2 本指で上下になぞる</td><td class="wrap"><code>OnMouseWheel</code></td></tr>
+              <tr><td>吹き出しをタップ</td><td class="wrap"><code>\x</code> の待ちを進める。話し終わっていれば閉じる</td></tr>
+              <tr><td>選択肢やリンクを長押し</td><td class="wrap">カーソルを乗せたのと同じ。離すと選ばずに外れる</td></tr>
+              <tr><td>ほかのアプリで「共有」→「ゴーストに渡す」</td><td class="wrap">ファイルなら <code>OnFileDrop2</code>（<code>.nar</code> ならインストール）、文字なら <code>OnTextDrop</code>、URL なら <code>OnURLQuery</code></td></tr>
+              <tr><td>長押しメニューの「隠す」</td><td class="wrap">キャラクターを隠す。通知の「表示」で出し直す</td></tr>
+              <tr><td>長押しメニューの「位置を戻す」</td><td class="wrap"><code>OnResetWindowPos</code>。ゴーストが答えなければ最初の位置に戻す</td></tr>
+              <tr><td>長押しメニューの「消去」</td><td class="wrap">本当に消すかバルーンで確かめてから、ゴーストを消す</td></tr>
+              <tr><td>通知の「ネットワーク更新」</td><td class="wrap">起動中のゴーストを更新</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>キー入力でメニューを開くゴーストは、スマートフォンでは操作できません。</p>
+
+        <h2 id="limits">できないこと</h2>
+        <ul>
+          <li>美坂・偽林檎など、ほかの SHIORI のゴーストは動きません。</li>
+          <li>SAORI（YAYA の <code>LOADLIB</code> など）、YAYA の <code>EXECUTE</code>、Lua の C モジュール・<code>os.execute</code>・<code>io.popen</code> は止めています。ゴーストにネイティブコードやシェルを動かさせないためです。</li>
+          <li>シェル単体の <code>.nar</code> は入りません。</li>
+          <li>ネットワーク更新で変わったシェル画像は、次の起動から反映されます。</li>
+          <li>Android の制約で、キャラクターの透明な部分もタッチを受け取ります。</li>
+        </ul>
+        <p>辞書が読み書きできるのは、そのゴーストのフォルダの中だけです。辞書が無限ループして 60 秒答えないときは、SHIORI のプロセスを止めてゴーストを閉じます。</p>
+        <div class="warn">
+          <p>入力の箱に打った文字は、ゴーストにそのまま渡ります。ほかのサービスのパスワードなどは入れないでください。</p>
+        </div>
+
+        <h2 id="build">ビルド</h2>
+        <p>JDK 17、Android SDK（compileSdk 37）、Android NDK 29.0.14206865 と CMake、Git が要ります。NDK と CMake は、SDK のライセンスに同意していればビルドのときに自動で入ります。</p>
+        <p>SHIORI はサブモジュールなので、<code>--recurse-submodules</code> を付けて取ってきます。</p>
+<pre><code>git clone --recurse-submodules https://github.com/ukagaka-irono/pono-droid.git</code></pre>
+        <p>すでにクローンしてあるなら:</p>
+<pre><code>git submodule update --init --recursive</code></pre>
+        <p><code>local.properties</code> に <code>sdk.dir=...</code> を書くか、<code>ANDROID_HOME</code> を設定してからビルドします。</p>
+<pre><code>./gradlew :app:assembleDebug</code></pre>
+        <p>APK は <code>app/build/outputs/apk/debug/app-debug.apk</code> にできます。デバッグ版は開いてすぐの動きがカクつくので、ふだん使うなら次のほうがいいです（中身はリリースと同じで、デバッグ用の鍵で署名した版。データを残したまま入れられます）。</p>
+<pre><code>./gradlew :app:installBenchmark</code></pre>
+        <p>テストは <code>./gradlew :baseware:test</code> です。</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><a href="https://github.com/ukagaka-irono">github.com/ukagaka-irono</a></div>
+  </footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>
