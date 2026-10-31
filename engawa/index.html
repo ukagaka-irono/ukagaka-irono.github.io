@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Engawa の使い方 - ukagaka-irono</title>
-  <meta name="description" content="ブラウザで動く伺かのベースウェア Engawa のビルドと使い方。">
+  <meta name="description" content="ブラウザで動く伺かのベースウェア Engawa の入れ方と使い方。">
   <link rel="stylesheet" href="../assets/css/style.css">
   <script src="../assets/js/theme.js"></script>
 </head>
@@ -23,49 +23,76 @@
   <main id="main" class="container">
     <p class="breadcrumb"><a href="../">一覧</a> &gt; 伺か &gt; Engawa</p>
     <h1>Engawa</h1>
-    <p class="intro">ブラウザで動く伺か（ukagaka）のベースウェアです。SSP の動きをブラウザの上で再現するのが目標です。入れたゴーストはブラウザの中（IndexedDB）に保存され、次に開いたときもそのまま起動します。</p>
-    <p class="meta"><a href="https://github.com/ukagaka-irono/Engawa">リポジトリ</a> ・ Firefox / Chrome / Safari（iOS 12 以降）</p>
+    <p class="intro">ブラウザで動く伺か（ukagaka）のベースウェアです。SSP の動きをブラウザの上で再現するのが目標です。YAYA・里々・華和梨などの SHIORI を WebAssembly にして組み込んであるので、ふつうのゴーストがそのまま動きます。入れたゴーストはブラウザの中（IndexedDB）に保存され、次に開いたときもそのまま起動します。</p>
+    <p class="meta"><a href="https://github.com/ukagaka-irono/Engawa">リポジトリ</a> ・ <a href="https://github.com/ukagaka-irono/Engawa/releases">Releases</a> ・ β 0.1.0 ・ Firefox / Chrome / Edge / Safari（iOS 12 以降）</p>
 
     <div class="doc">
       <nav class="toc" aria-labelledby="toc-title">
         <h2 id="toc-title">目次</h2>
         <ol>
-          <li><a href="#build">ビルドして開く</a></li>
+          <li><a href="#get">手に入れる</a></li>
           <li><a href="#usage">使い方</a></li>
-          <li><a href="#browsers">対応ブラウザ</a></li>
           <li><a href="#shiori">SHIORI</a></li>
+          <li><a href="#saori">SAORI とプラグイン</a></li>
+          <li><a href="#cannot">ブラウザではできないこと</a></li>
+          <li><a href="#embed">よそのページに埋め込む</a></li>
           <li><a href="#dev">開発用</a></li>
         </ol>
       </nav>
 
       <div class="content">
-        <h2 id="build">ビルドして開く</h2>
-        <p>Node.js が要ります。</p>
+        <h2 id="get">手に入れる</h2>
+        <p><a href="https://github.com/ukagaka-irono/Engawa/releases">Releases</a> から <code>index.html</code> を落として、ブラウザで開く（ダブルクリックする）だけで動きます。サーバーは要りません。ほかの場所に置くときも、人に渡すときも、この 1 ファイルで動きます。いまの版は β 0.1.0（ベータ版）です。</p>
+        <p>はじめて開いたときは、サンプルゴースト「ゆかりとちゅん」が自動で入ります。</p>
+        <p>自分でビルドするときは Node.js が要ります。<code>dist/index.html</code> ができます。</p>
 <pre><code>git clone https://github.com/ukagaka-irono/Engawa.git
 cd Engawa
 npm install
 npm run build</code></pre>
-        <p>すべてを 1 つにまとめた <code>dist/index.html</code> ができます。サーバーは要らず、このファイルをブラウザで開く（ダブルクリックする）だけで起動します。ほかの場所に置くときも、人に渡すときも、この 1 ファイルで動きます。</p>
-        <p>はじめて開いたときは、サンプルゴースト「ゆかりとちゅん」が自動で入ります。</p>
         <div class="note">
-          <p><code>file://</code> で開いたページで IndexedDB が使えないブラウザでは、メモリに保存して動きます。そのことを通知し、入れたものはページを閉じると消えます。Chrome と Edge では <code>file://</code> でも保存されます。</p>
+          <p>SHIORI・SAORI を組み込んでいるので、<code>index.html</code> は約 14 MB あります。<code>file://</code> で開いたページで IndexedDB が使えないブラウザでは、メモリに保存して動きます（そのことを通知し、入れたものはページを閉じると消えます）。Chrome と Edge では <code>file://</code> でも保存されます。</p>
         </div>
 
         <h2 id="usage">使い方</h2>
         <ul>
-          <li>インストール: <code>.nar</code> / <code>.zip</code> ファイルか、ゴーストのフォルダを画面にドロップします。メニューの「インストール」からも選べます。</li>
+          <li>インストール: <code>.nar</code> / <code>.zip</code> ファイルか、フォルダを画面にドロップします。ゴースト・シェル・バルーン・プラグインが入ります。メニューの「インストール」からも選べます。</li>
           <li>メニュー: キャラクターかバルーンを右クリックするか、画面下のタスクバーの右端の「縁」アイコンを押します。開いているときは、項目の後ろの文字（「ゴースト切り替え(G)」の G など）を押しても選べます。</li>
           <li>移動: ドラッグします。<code>seriko.alignmenttodesktop,free</code> のシェルは上下にも動かせます。</li>
           <li>スマートフォン・タブレット: 長押しでメニュー、2 回続けてタップでダブルクリックです。</li>
-          <li>ヘルプ: メニューの「ヘルプ」で説明を開けます。</li>
+          <li>ヘルプ: メニューの「ヘルプ」で説明を開けます。組み込んでいる SHIORI・SAORI のライセンスは、メニューの「ライセンス」で見られます。</li>
         </ul>
-
-        <h2 id="browsers">対応ブラウザ</h2>
-        <p>Firefox、Google Chrome（Android 版を含む）、Safari（iOS 12 以降）。Edge など Chrome と同じエンジンのブラウザでも動きます。Internet Explorer には対応していません。</p>
+        <p>対応ブラウザは Firefox、Google Chrome（Android 版を含む）、Edge、Safari（iOS 12 以降）です。Internet Explorer には対応していません。</p>
+        <p>実在のゴースト 76 体で試し、45 体が起動からダブルクリック・終了まで動くことを確かめています。ベータ版なので、SSP と動きが違うところや不具合があれば <a href="https://github.com/ukagaka-irono/Engawa/issues">Issue</a> で知らせてください。</p>
 
         <h2 id="shiori">SHIORI</h2>
-        <p>ブラウザでは Windows の DLL を実行できないので、YAYA・里々などの DLL の SHIORI は動きません。そういうゴーストは、シェルの表示とメニューだけ使えます（起動時にバルーンで知らせます）。</p>
-        <p>かわりに JavaScript で SHIORI を書けます。<code>ghost/master/descript.txt</code> に <code>shiori,shiori.js</code> と書き、次の関数を export する ES モジュールを置きます。Web Worker の中で動きます。</p>
+        <p>各 SHIORI のソースを WebAssembly にして組み込んであります。ゴーストの <code>descript.txt</code> の <code>shiori</code> と、ゴーストが同梱している DLL の中身から、どれで動かすかを決めます（<code>shiori.dll</code> などに名前を変えてあっても分かります）。版によって動きが変わった SHIORI は古い版も入れてあり、同梱の DLL の版で選びます。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">SHIORI</th><th scope="col">DLL</th></tr></thead>
+            <tbody>
+              <tr><td>YAYA</td><td><code>yaya.dll</code></td></tr>
+              <tr><td>文（AYA5）</td><td><code>aya5.dll</code></td></tr>
+              <tr><td>里々 2.x・1.x</td><td><code>satori.dll</code></td></tr>
+              <tr><td>華和梨 9（8 の辞書も読める）・華和梨 7</td><td><code>shiori.dll</code></td></tr>
+              <tr><td>なし栞</td><td><code>nashi.dll</code></td></tr>
+              <tr><td>minato</td><td><code>shiori.dll</code>（<code>talks/main.mnt</code>）</td></tr>
+              <tr><td>pasta・emo</td><td><code>pasta.dll</code>・<code>emo.dll</code></td></tr>
+              <tr><td>kagari（kotori を含む）</td><td><code>kagari.dll</code></td></tr>
+              <tr><td>quickshiori</td><td><code>quickshiori.dll</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>SHIOLINK で Node.js のプログラムを動かすもの（shiolinkjs を使うものなど）は、ブラウザの中の小さな Node.js で動かします。</p>
+        <h3>動かない SHIORI</h3>
+        <ul>
+          <li>ソースが公開されていないもの（文 ver.1〜4・美坂・偽栞・灯 など、主に 2001〜2005 年ごろのもの）</li>
+          <li>.NET（dnproxy）・PowerShell（powershiori）の SHIORI、別の言語の実行環境を呼ぶもの（Perl・PHP・Ruby・Python）</li>
+          <li>蒼空（aosora）。ソースの使い方が個人利用に限られている（ライセンスが決まっていない）ため</li>
+          <li>実行ファイルの中にゴーストを書いたもの（Go・Zig などで書いて DLL にしたもの）</li>
+        </ul>
+        <p>動かない SHIORI のゴーストは、シェルの表示とメニューだけ使えます（起動時にバルーンで知らせます）。くわしくは README の「<a href="https://github.com/ukagaka-irono/Engawa#shiori-について">SHIORI について</a>」を見てください。</p>
+        <h3>JavaScript で書く</h3>
+        <p>JavaScript でも SHIORI を書けます。<code>ghost/master/descript.txt</code> に <code>shiori,shiori.js</code> と書き、次の関数を export する ES モジュールを置きます。Web Worker の中で動きます。</p>
 <pre><code>export function load(dir) {}
 export function request(text) {
   // text は SHIORI/3.0 の要求文字列。応答文字列を返す (Promise でもよい)
@@ -87,21 +114,58 @@ export function unload() {}</code></pre>
         </div>
         <p>古い Safari でも動かすために、<code>import</code> 文と <code>export ... from</code> は使えません。別のファイルは <code>engawa.importModule()</code> で読み込みます。サンプルは <a href="https://github.com/ukagaka-irono/Engawa/blob/main/sample/engawa/ghost/master/shiori.js">sample/engawa/ghost/master/shiori.js</a> です。</p>
 
+        <h2 id="saori">SAORI とプラグイン</h2>
+        <p>ゴーストが同梱している SAORI の DLL は、ブラウザで作り直したものに差し替えて呼びます。WebAssembly にしたもの（ssu・timebkn・sqlori・kisaragi（MeCab）など）と JavaScript で作り直したもの（clipcopy・PlayWavSound・httpc・mciaudio など）を合わせて 67 種類あります。SSP が内蔵している SAORI（clipcopy・textcopy・httpc・houchi など）は、DLL を同梱していなくても名前で使えます。</p>
+        <p>ごみ箱・ほかのアプリの窓など、ブラウザでできないことをする SAORI は、元の SAORI ができなかったときと同じ答えを返すので、ゴーストの台本は止まりません。ネットワークを使う SAORI（httpc・chttpc など）は、相手のサーバーが CORS を許していないと失敗します。</p>
+        <p>プラグイン（PLUGIN/2.0）も、YAYA・kagari で書いたものと、SHIOLINK の Node.js のものが動きます（BalloonSelector・スタンプ帳・Nostrゅう など）。Windows の DLL のままのプラグイン（棒読みちゃん・CeVIO・Discord などほかのアプリとつなぐもの）は動かず、メニューに「（動かせません）」と出ます。</p>
+        <p>SAORI の一覧と、プラグインを版ごとに試した結果は、README の「<a href="https://github.com/ukagaka-irono/Engawa#saori-について">SAORI について</a>」「<a href="https://github.com/ukagaka-irono/Engawa#プラグインについて">プラグインについて</a>」にあります。</p>
+
+        <h2 id="cannot">ブラウザではできないこと</h2>
+        <p>Windows の DLL のままのプラグインとヘッドライン、FMO、ポート 9801 の SSTP、時計合わせ、メールチェック、ごみ箱、壁紙、ほかのアプリの窓や曲、スリープ・ロック・CPU やメモリの負荷、ほかのアプリを開くこと、CD の再生などはできません。</p>
+        <ul>
+          <li><code>\![open,dialog,save]</code> はダウンロードになり、<code>\![open,dialog,folder]</code> は取り消しとして扱います。</li>
+          <li>バッテリーは Battery Status API のあるブラウザ、音声認識は Web Speech API のあるブラウザ（Chrome など）だけです。</li>
+          <li>ネットワーク更新・HTTP・iCal・WebSocket は、相手が CORS（WebSocket は接続）を許しているときだけです。</li>
+        </ul>
+
+        <h2 id="embed">よそのページに埋め込む</h2>
+        <p>Releases（またはビルドでできる <code>dist/</code>）の <code>engawa-embed.js</code> は、よそのページに読み込ませて使う版です。<a href="https://ikagaka.github.io/Ikagaka.demo/">Ikagaka.demo</a> と同じ名前の関数を出すので、Ikagaka でゴーストのおためし起動をしているページ（ななろだなど）で、その代わりに使えます。読み込むスクリプトを <code>engawa-embed.js</code> 1 本に変えれば、呼び出し方は変えずに動きます。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">関数</th><th scope="col">内容</th></tr></thead>
+            <tbody>
+              <tr><td><code>install_nar(file, dirpath, sakuraname, type)</code></td><td class="wrap">nar を入れる（起動はしない）。<code>type</code> が <code>"url"</code> なら <code>file</code> は URL、それ以外は Blob</td></tr>
+              <tr><td><code>boot_nanikamanager()</code></td><td class="wrap">入れたゴーストを起動する</td></tr>
+              <tr><td><code>halt_nanikamanager()</code></td><td class="wrap">すべて閉じる</td></tr>
+              <tr><td><code>delete_storage()</code> / <code>delete_database()</code></td><td class="wrap">入れたものを全部消す</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul>
+          <li>読み込み終わると <code>window.onIkagakaReady()</code> を呼びます。どの関数も Promise を返します。</li>
+          <li>Engawa の CSS は <code>.engawa-embed</code> の中だけに効くので、ページの見た目を変えません。メニューはキャラクターの右クリック（タッチでは長押し）で開きます。</li>
+          <li>おためしなので、入れたものや設定は保存しません（ページを閉じると消えます）。</li>
+          <li>nar はページと同じサイトから読みます（よそのサイトの nar は、そのサイトが CORS を許していれば読めます）。</li>
+        </ul>
+
         <h2 id="dev">開発用</h2>
         <div class="table-wrap">
           <table>
             <thead><tr><th scope="col">コマンド</th><th scope="col">内容</th></tr></thead>
             <tbody>
               <tr><td><code>npm run dev</code></td><td class="wrap">開発サーバー（Vite）</td></tr>
-              <tr><td><code>npm run build</code></td><td class="wrap">型チェックと本番ビルド</td></tr>
+              <tr><td><code>npm run build</code></td><td class="wrap">型チェックと本番ビルド（<code>dist/index.html</code> と <code>dist/engawa-embed.js</code>）</td></tr>
               <tr><td><code>npm test</code></td><td class="wrap">単体テスト</td></tr>
               <tr><td><code>npm run sample</code></td><td class="wrap">サンプルゴーストの <code>.nar</code> を作り直す</td></tr>
+              <tr><td><code>node native/build.mjs [名前...]</code></td><td class="wrap">SHIORI・SAORI を WebAssembly にし直す（版を上げるときだけ。Emscripten 5.0.x と Rust の nightly が要ります）</td></tr>
             </tbody>
           </table>
         </div>
-        <p>ブラウザのコンソールから、前面のゴーストにスクリプトを送れます（SSTP の代わり）。</p>
+        <p>ブラウザのコンソールから、前面のゴーストにスクリプトを送れます。<code>engawa.sstp</code> は SSTP の要求文を受けて応答文を返します。</p>
 <pre><code>engawa.send('\\0\\s[5]こんにちは。\\e');
-engawa.raise('OnBoot');</code></pre>
+engawa.raise('OnBoot');
+await engawa.sstp('SEND SSTP/1.4\r\nSender: テスト\r\nScript: \\0やあ\\e\r\n\r\n');</code></pre>
+        <p>よそのページやフレームからは <code>postMessage</code> で SSTP を送れます。ただし既定では受けず、オプションの「よそのページからの SSTP を受ける」を入れたときだけ受けます。そのときも、開く・実行する・ほかのゴーストを動かすなどのタグは使えません。</p>
         <p>対応しているタグやイベントは、README の「<a href="https://github.com/ukagaka-irono/Engawa#対応状況">対応状況</a>」にあります。</p>
       </div>
     </div>

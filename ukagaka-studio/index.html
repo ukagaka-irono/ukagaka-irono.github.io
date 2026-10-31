@@ -24,7 +24,7 @@
     <p class="breadcrumb"><a href="../">一覧</a> &gt; 伺か &gt; 伺かスタジオ</p>
     <h1>伺かスタジオ（Ukagaka Studio）</h1>
     <p class="intro">伺か（SSP）のゴーストを、Scratch のようにブロックを積んで作るアプリです。組んだブロックは栞 YAYA の辞書に訳して書き出すので、書き出したものはふつうの YAYA ゴーストです。YAYA で手書きしたゴーストに、ブロックで作ったトークを足すこともできます。</p>
-    <p class="meta"><a href="https://github.com/ukagaka-irono/ukagaka-studio">リポジトリ</a> ・ <a href="https://github.com/ukagaka-irono/ukagaka-studio/releases">Releases</a> ・ <a href="https://github.com/ukagaka-irono/ukagaka-studio/blob/main/README.en.md">English</a> ・ Windows 10 / 11 ・ なしライセンス 1.1</p>
+    <p class="meta"><a href="https://github.com/ukagaka-irono/ukagaka-studio">リポジトリ</a> ・ <a href="https://github.com/ukagaka-irono/ukagaka-studio/releases">Releases</a> ・ <a href="https://github.com/ukagaka-irono/ukagaka-studio/blob/main/README.en.md">English</a> ・ 2.0.0-alpha ・ Windows 10 / 11 ・ なしライセンス 1.1</p>
 
     <div class="doc">
       <nav class="toc" aria-labelledby="toc-title">
@@ -34,6 +34,7 @@
           <li><a href="#get">手に入れる</a></li>
           <li><a href="#start">起動する</a></li>
           <li><a href="#blocks">ブロックを組む</a></li>
+          <li><a href="#dic">辞書を書く</a></li>
           <li><a href="#ssp">SSP に入れる</a></li>
           <li><a href="#sstp">動いているゴーストで試す</a></li>
           <li><a href="#update">ネットワーク更新</a></li>
@@ -45,7 +46,7 @@
       </nav>
 
       <div class="content">
-        <p>「なし栞 + なしスタジオ」（作者: 月見里 彩葉）のフォークです。名前を変えて、独自に直しています。2.0 からは、独自の栞をやめて YAYA を使っています。もとのものは<a href="../nashi-shiori-studio-2/">こちら</a>。</p>
+        <p>「なし栞 + なしスタジオ」（作者: 月見里 彩葉）のフォークです。名前を変えて、独自に直しています。2.0 からは、独自の栞をやめて YAYA を使っています。もとの なし栞 を使い続けるほうは、<a href="../nashi-shiori-studio-2/">なし栞 2 + なしスタジオ 2</a> として引き継いでいます。</p>
 
         <h2 id="env">動く環境</h2>
         <ul>
@@ -55,7 +56,7 @@
         <p>exe は 1 ファイルで、ランタイムのインストールは要りません。</p>
 
         <h2 id="get">手に入れる</h2>
-        <p>ふつうは <a href="https://github.com/ukagaka-irono/ukagaka-studio/releases">Releases</a> の zip を使います。押すたびの最新がほしいときは、<a href="https://github.com/ukagaka-irono/ukagaka-studio/actions">Actions</a> の実行ページのいちばん下の Artifacts にあります（GitHub のログインが要ります。30 日で消えます）。</p>
+        <p>ふつうは <a href="https://github.com/ukagaka-irono/ukagaka-studio/releases">Releases</a> の zip（いまは <code>ukagaka-studio-2.0.0-alpha.zip</code>）を使います。展開して、好きな場所に置きます。押すたびの最新がほしいときは、<a href="https://github.com/ukagaka-irono/ukagaka-studio/actions">Actions</a> の実行ページのいちばん下の Artifacts にあります（GitHub のログインが要ります。30 日で消えます）。</p>
         <p>コード署名していないので、Windows に止められることがあります。そのときは<a href="#blocked">起動を止められたら</a>を見てください。</p>
 
         <h2 id="start">起動する</h2>
@@ -67,7 +68,7 @@
         </ul>
 
         <h2 id="blocks">ブロックを組む</h2>
-        <p>上のバーの「新規」で、ひな形ウィザードが開きます。ゴーストと 2 人の名前を入れて、はじめから入れておくもの（あいさつ・なでたときの反応・ランダムトーク・アラームなど）をえらびます。画面は、バーの下で トーク／セリフ／キャラと絵／ゴースト情報／書き出し に切りかえます。</p>
+        <p>上のバーの「新規」で、ひな形ウィザードが開きます。ゴーストと 2 人の名前を入れて、はじめから入れておくもの（あいさつ・なでたときの反応・ランダムトーク・アラームなど）をえらびます。画面は、バーの下で トーク／セリフ／辞書／キャラと絵／ゴースト情報／書き出し に切りかえます。</p>
         <ol>
           <li>「トーク」の画面で、左の「イベント」から「起動したとき」などをキャンバスにドラッグします。</li>
           <li>その下に「セリフ」の「◯◯が □□ と話す」をつなげます。欄の横の ☺ で、表情を変える印 <code>{表情:1}</code> や待つ印 <code>{待つ:500}</code> を入れられます。</li>
@@ -84,6 +85,18 @@
           <li><kbd>?</kbd> か <kbd>F1</kbd> で、つかいかたとキーの一覧が開きます。</li>
         </ul>
         <p>「部品」は、よく使う組みかたに名前を付けて取っておくものです。<code>.parts.json</code> にして人に渡せます。「YAYA を見る」では、そのかたまりがどんな YAYA の関数になるかを見られます。</p>
+        <p>SSP のプラグインと組むブロックもあります。「プラグインにイベントを伝える」ブロックと、プラグインから届くイベントの帽子ブロック（天気予報・日記・スタンプ帳・バルーンをえらぶ・Nostr など）です。プラグインごとの使いかたは <a href="https://github.com/ukagaka-irono/ukagaka-studio/blob/main/docs/plugins.md">docs/plugins.md</a> にあります。</p>
+
+        <h2 id="dic">辞書を書く</h2>
+        <p>「辞書」の画面では、YAYA の辞書（.dic）をプロジェクトの中に作って、テキストで書けます。行番号と色分けが付き、YAYA として読めない行は、行番号の横と下の一覧に出ます。書き出すとゴーストに入り、辞書にあるイベントは、同じイベントのブロックのかわりに動きます。</p>
+        <ul>
+          <li>テキストのとなりに、同じ辞書をブロックにしたもの（YAYA の構文と 1 対 1）が出ます。テキストを打つとブロックが、ブロックを変えるとテキストが書きかわります。コメントは残ります。</li>
+          <li>トークのブロックからは「YAYA の関数 F を A B でよぶ」で、辞書の関数をよべます。</li>
+          <li>辞書の関数は「ためす」でも動きます（右の列の「辞書の関数」か、辞書の画面の関数の帽子の ▶）。</li>
+          <li>「いまある YAYA ゴーストから読みこむ」にゴーストのフォルダを入れると、そのゴーストの辞書をプロジェクトに写せます。Shift_JIS の辞書も UTF-8 にして読みこみ、もとのゴーストのファイルは変えません。</li>
+          <li>「チェック」タブは、読めない行・かぶった関数・どこにも無い関数をよんでいるところも知らせます。</li>
+        </ul>
+        <p>トークの画面の右の列の「YAYA」タブには、最後に押したかたまりが書き出すとどんな YAYA になるかが出て、ブロックを変えるとその場で書きかわります。</p>
 
         <h2 id="ssp">SSP に入れる</h2>
         <p>「書き出し」の画面の「SSP に入れて動かす」を押します。</p>
