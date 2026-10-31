@@ -24,7 +24,7 @@
     <p class="breadcrumb"><a href="../">一覧</a> &gt; 伺か &gt; Engawa</p>
     <h1>Engawa</h1>
     <p class="intro">ブラウザで動く伺か（ukagaka）のベースウェアです。SSP の動きをブラウザの上で再現するのが目標です。YAYA・里々・華和梨などの SHIORI を WebAssembly にして組み込んであるので、ふつうのゴーストがそのまま動きます。入れたゴーストはブラウザの中（IndexedDB）に保存され、次に開いたときもそのまま起動します。</p>
-    <p class="meta"><a href="https://github.com/ukagaka-irono/Engawa">リポジトリ</a> ・ <a href="https://github.com/ukagaka-irono/Engawa/releases">Releases</a> ・ β 0.1.0 ・ Firefox / Chrome / Edge / Safari（iOS 12 以降）</p>
+    <p class="meta"><a href="app/">このサイトで動かす</a> ・ <a href="https://github.com/ukagaka-irono/Engawa">リポジトリ</a> ・ <a href="https://github.com/ukagaka-irono/Engawa/releases">Releases</a> ・ β 0.1.0 ・ Firefox / Chrome / Edge / Safari（iOS 12 以降）</p>
 
     <div class="doc">
       <nav class="toc" aria-labelledby="toc-title">
@@ -42,7 +42,8 @@
 
       <div class="content">
         <h2 id="get">手に入れる</h2>
-        <p><a href="https://github.com/ukagaka-irono/Engawa/releases">Releases</a> から <code>index.html</code> を落として、ブラウザで開く（ダブルクリックする）だけで動きます。サーバーは要りません。ほかの場所に置くときも、人に渡すときも、この 1 ファイルで動きます。いまの版は β 0.1.0（ベータ版）です。</p>
+        <p>落とさずに試すなら、<a href="app/">このサイトの Engawa</a>（β 0.1.0）を開くだけで動きます。入れたゴーストは、このサイトを開いたブラウザの中に保存されます。はじめは約 14 MB を読みこむので、少し時間がかかります。</p>
+        <p>手元に置くときは、<a href="https://github.com/ukagaka-irono/Engawa/releases">Releases</a> から <code>index.html</code> を落として、ブラウザで開く（ダブルクリックする）だけで動きます。サーバーは要りません。ほかの場所に置くときも、人に渡すときも、この 1 ファイルで動きます。いまの版は β 0.1.0（ベータ版）です。</p>
         <p>はじめて開いたときは、サンプルゴースト「ゆかりとちゅん」が自動で入ります。</p>
         <p>自分でビルドするときは Node.js が要ります。<code>dist/index.html</code> ができます。</p>
 <pre><code>git clone https://github.com/ukagaka-irono/Engawa.git
