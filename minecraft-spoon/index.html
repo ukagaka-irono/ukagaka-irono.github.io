@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spoon（MinecraftSpoon）の使い方 - ukagaka-irono</title>
+  <meta name="description" content="Minecraft 1.7.10 の Forge をもとにした Spoon の使い方。日本語入力・看板のカーソルなど。">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/theme.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../">ukagaka-irono</a>
+      <nav class="site-nav" aria-label="サイト">
+        <a href="../">一覧</a>
+        <a href="https://github.com/ukagaka-irono">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <p class="breadcrumb"><a href="../">一覧</a> &gt; Minecraft &gt; Spoon</p>
+    <h1>Spoon（MinecraftSpoon）</h1>
+    <p class="intro">Minecraft 1.7.10 の Minecraft Forge 10.13.4.1614 をもとにしたものです。Forge と FML のパッケージ・mod ID・版の数字はそのまま残してあるので、いまある 1.7.10 の Forge の mod が、そのまま読みこめます。そのうえで、日本語入力（IME）を使いやすくしたり、看板にカーソルを付けたりしています。</p>
+    <p class="meta"><a href="https://github.com/ukagaka-irono/MinecraftSpoon/tree/spoon">リポジトリ（spoon ブランチ）</a> ・ Spoon 1.0.0 ・ Minecraft 1.7.10 ・ Forge 10.13.4.1614 ・ Forge Public License</p>
+
+    <div class="doc">
+      <nav class="toc" aria-labelledby="toc-title">
+        <h2 id="toc-title">目次</h2>
+        <ol>
+          <li><a href="#changes">Forge から変えたところ</a></li>
+          <li><a href="#ime">日本語入力</a></li>
+          <li><a href="#get">手に入れる</a></li>
+          <li><a href="#prism">Prism Launcher で遊ぶ</a></li>
+          <li><a href="#build">ビルド</a></li>
+          <li><a href="#dev">開発するとき</a></li>
+          <li><a href="#license">ライセンス</a></li>
+        </ol>
+      </nav>
+
+      <div class="content">
+        <div class="note">
+          <p>Spoon の中身は <code>spoon</code> ブランチにあります。リポジトリを開いたときに出る <code>1.7.10</code> ブランチは、もとの Forge のままです。</p>
+        </div>
+
+        <h2 id="changes">Forge から変えたところ</h2>
+        <ul>
+          <li>日本語・中国語・韓国語の IME を入れたままでも、WASD などで動けます（<a href="#ime">下で説明</a>）。IME で打った文字は、チャット・看板などの入力欄に届き、変換の窓はカーソルのところに出ます。</li>
+          <li>看板に動かせるカーソルが付きます（矢印キー・Home / End・Delete）。行の途中にも文字を入れられ、1 行には板に収まる文字だけが入ります。</li>
+          <li>全角の英字（ｋ など）の幅を、描いている幅どおりに数えるので、それを含む中央ぞろえの文字が左にずれません。</li>
+          <li>タイトル画面から Minecraft Realms をなくし、その場所に横長の「Mods」ボタンを置いています。</li>
+          <li>起動が速くなります（mod を探すときにメソッドの中身を読まない）。読みこみの段階ごとに、かかった時間を「Spoon startup: …」としてログに出します。</li>
+          <li>タイトル画面と F3 には「Spoon &lt;版&gt; (Forge 10.13.4.1614)」と出ます。クライアントとサーバーのブランドは <code>fml,forge,spoon</code> です。</li>
+          <li>Forge の更新の確認はしません（Spoon にはまだ更新のサーバーがありません）。</li>
+        </ul>
+
+        <h2 id="ime">日本語入力</h2>
+        <p>Windows で、文字の入力欄を選んでいないあいだは、IME をゲームの窓から外します。そのため、IME をオンにしたままでも WASD などのキーがそのまま効きます。チャットや看板を開くと、IME で日本語を打てます。</p>
+        <p>この動きがいらないときは、<code>config/forge.cfg</code> の <code>imeControl</code> を <code>false</code> にします。</p>
+
+        <h2 id="get">手に入れる</h2>
+        <p>まだリリース（配布用のファイル）はありません。いまは<a href="#build">自分でビルド</a>して、できたものを使います。</p>
+        <ul>
+          <li>Prism Launcher のインスタンス（<code>spoon-…-prism.zip</code>）: いちばん手軽です（<a href="#prism">下で説明</a>）。</li>
+          <li>ユニバーサル jar とインストーラー: <code>build/distributions</code> にできます。</li>
+        </ul>
+
+        <h2 id="prism">Prism Launcher で遊ぶ</h2>
+        <ol>
+          <li>Prism Launcher のインスタンスを作ります（<a href="#build">ビルド</a>の環境で）。
+<pre><code>.\gradlew.bat packagePrism</code></pre>
+            <code>build/distributions/spoon-…-prism.zip</code> ができます。</li>
+          <li>Prism Launcher で「インスタンスを追加」→「インポート」を開き、その zip をえらびます。</li>
+          <li>Minecraft 1.7.10 とライブラリは、Prism が自分で落としてきます。あとは、ふつうのインスタンスと同じように起動します。</li>
+        </ol>
+        <p>Spoon は Prism の一覧には入っていないので、zip の中に Spoon の部品（<code>patches/io.github.ukagaka-irono.spoon.json</code>）を入れてあります。</p>
+
+        <h2 id="build">ビルド</h2>
+        <p>要るもの:</p>
+        <ul>
+          <li>JDK 8。Minecraft 1.7.10 と ForgeGradle 1.2 は、新しい JDK ではビルドできません。</li>
+          <li>はじめのセットアップのときのインターネット（Gradle・ForgeGradle・Minecraft・MCP のファイルを取ってきます）。</li>
+        </ul>
+        <p>Gradle は、wrapper が取ってきます（Gradle 4.10.3）。Gradle は上げないでください。使っている ForgeGradle（GTNewHorizons の 1.2.13）が、Gradle 5 でなくなった機能を使っています。</p>
+        <ol>
+          <li><code>spoon</code> ブランチを取ってきます。
+<pre><code>git clone -b spoon https://github.com/ukagaka-irono/MinecraftSpoon.git
+cd MinecraftSpoon</code></pre></li>
+          <li><code>JAVA_HOME</code> を JDK 8 にします（PowerShell の例）。
+<pre><code>$env:JAVA_HOME = "C:\Program Files\Eclipse Adoptium\jdk-8.0.502.7-hotspot"</code></pre>
+            macOS / Linux では <code>export JAVA_HOME=/path/to/jdk8</code> です。</li>
+          <li>作業場所を作ります（Minecraft を逆コンパイルして、FML と Forge のパッチを当てます）。
+<pre><code>.\gradlew.bat setupForge</code></pre></li>
+          <li>作りたいものをビルドします。
+<pre><code>.\gradlew.bat packageUniversal packageInstaller   # ユニバーサル jar とインストーラー
+.\gradlew.bat packagePrism                        # Prism Launcher のインスタンス</code></pre>
+            どれも <code>build/distributions</code> にできます。</li>
+        </ol>
+        <p>macOS / Linux では <code>.\gradlew.bat</code> のかわりに <code>./gradlew</code> を使います。</p>
+
+        <h2 id="dev">開発するとき</h2>
+        <ul>
+          <li>作業場所からクライアントを動かす: <code>.\gradlew.bat runClient</code>（名前を決めるなら <code>-PmcUsername=&lt;名前&gt;</code>）</li>
+          <li><code>eclipse/Forge</code> で Minecraft のクラスを直したら、<code>gradlew genPatches</code> でパッチを作り直します。直すつもりのなかったパッチまで変わることがあるので、意図したものだけを残して、ほかは git で戻してください。</li>
+          <li>Eclipse を使うときは、ワークスペースをリポジトリの中の <code>eclipse</code> フォルダにします。</li>
+        </ul>
+        <p>手を入れるときの決まりは <a href="https://github.com/ukagaka-irono/MinecraftSpoon/blob/spoon/CONTRIBUTING.md">CONTRIBUTING.md</a> にあります。いまある Forge の mod が動くよう、<code>net.minecraftforge</code> / <code>cpw.mods.fml</code> のパッケージと「Forge」「FML」の mod ID は変えません。</p>
+
+        <h2 id="license">ライセンス</h2>
+        <p>Minecraft Forge と同じ条件で配っています。<code>MinecraftForge-License.txt</code>（Forge Public License）と <code>MinecraftForge-Credits.txt</code> を見てください。FML は LGPL（<code>fml/LICENSE-fml.txt</code>）です。同梱の音のライブラリには Paulscode のライセンスが当てはまります。</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><a href="https://github.com/ukagaka-irono">github.com/ukagaka-irono</a></div>
+  </footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>
