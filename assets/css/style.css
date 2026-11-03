@@ -184,7 +184,7 @@ li + li { margin-top: var(--space-1); }
 
 @media (min-width: 960px) {
   .doc { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 20px; }
-  .toc { position: sticky; top: 10px; align-self: start; margin-top: 20px; }
+  .toc { position: sticky; top: 10px; align-self: start; margin-top: 20px; max-height: calc(100vh - 20px); overflow-y: auto; }
 }
 
 code {
