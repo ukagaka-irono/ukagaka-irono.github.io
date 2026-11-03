@@ -20,6 +20,7 @@ uemoto_and_rahuu/          ゴースト「植本とラフウ」の配布ペー�
 uemoto_and_rahuu/update/   植本とラフウのネットワーク更新ファイル（ゴーストの descript.txt の homeurl）
 maid_classic/              バルーン「Maid Classic」の配布ページ（index.html）と nar
 maid_classic/update/       Maid Classic のネットワーク更新ファイル（バルーンの descript.txt の homeurl）
+tama-v6/                   tama v6 の配布ページ（index.html）と、リリースの tama.exe / tama_NUPX.exe / tamac.exe
 ```
 
 植本とラフウの nar と `uemoto_and_rahuu/update/` は、ゴーストのリポジトリ（非公開）の
@@ -34,6 +35,13 @@ Engawa の新しい版が出たら、`engawa/app/index.html` を入れかえて�
 
 ```bash
 gh release download <タグ> -R ukagaka-irono/Engawa -p index.html -D engawa/app --clobber
+```
+
+tama v6 の新しい版が出たら、`tama-v6/` の exe を入れかえて、`tama-v6/index.html` の版・日付・
+ファイルの大きさ・更新履歴と、トップの版の数字を直します。
+
+```bash
+gh release download <タグ> -R ukagaka-irono/tama-v6 -p tama.exe -p tama_NUPX.exe -p tamac.exe -D tama-v6 --clobber
 ```
 
 ページを足すときは、いまあるリポジトリのページをコピーして、見出しと本文を書きかえます。

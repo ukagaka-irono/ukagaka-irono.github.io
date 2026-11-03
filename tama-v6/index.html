@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>tama v6 の使い方 - ukagaka-irono</title>
+  <meta name="description" content="YAYA / AYA の動作確認とログのリアルタイム表示をするツール tama（v6）の配布ページと使い方。">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/theme.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../">ukagaka-irono</a>
+      <nav class="site-nav" aria-label="サイト">
+        <a href="../">一覧</a>
+        <a href="https://github.com/ukagaka-irono">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <p class="breadcrumb"><a href="../">一覧</a> &gt; 伺か &gt; tama v6</p>
+    <h1>tama v6（tama-v6）</h1>
+    <p class="intro">YAYA / AYA の SHIORI がちゃんと動くかを確かめ、実行ログをその場で表示するツールです。ゴーストを起動したまま横に置いておけば、辞書のエラーや警告がすぐに分かります。ログを出してすぐ終わるコマンドライン版の tamac も入っていて、CI や AI に辞書のエラーを見せるのにも使えます。<a href="https://github.com/YAYA-shiori/tama">YAYA-shiori/tama</a> を引き継いで手を入れている版です。</p>
+    <p class="meta"><a href="tama.exe">tama.exe</a> ・ <a href="tamac.exe">tamac.exe</a> ・ <a href="https://github.com/ukagaka-irono/tama-v6">リポジトリ</a> ・ <a href="https://github.com/ukagaka-irono/tama-v6/releases">Releases</a> ・ v1.0.3.27（2026年11月1日） ・ Windows</p>
+
+    <div class="doc">
+      <nav class="toc" aria-labelledby="toc-title">
+        <h2 id="toc-title">目次</h2>
+        <ol>
+          <li><a href="#get">手に入れる</a></li>
+          <li><a href="#usage">使い方</a></li>
+          <li><a href="#tamac">tamac（コマンドライン）</a></li>
+          <li><a href="#ghost">ゴーストから tama を使う</a></li>
+          <li><a href="#changes">更新履歴</a></li>
+          <li><a href="#license">ライセンス</a></li>
+        </ol>
+      </nav>
+
+      <div class="content">
+        <h2 id="get">手に入れる</h2>
+        <p>使うものを落として、好きな場所に置くだけで動きます。インストールは要りません。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">ファイル</th><th scope="col">内容</th></tr></thead>
+            <tbody>
+              <tr><td><a href="tama.exe">tama.exe</a>（43 KB）</td><td class="wrap">ログを表示するウィンドウの tama。UPX で縮めてあります</td></tr>
+              <tr><td><a href="tama_NUPX.exe">tama_NUPX.exe</a>（94 KB）</td><td class="wrap">縮めていない tama。中身は tama.exe と同じです</td></tr>
+              <tr><td><a href="tamac.exe">tamac.exe</a>（76 KB）</td><td class="wrap">コマンドライン版。辞書を 1 回読んで、ログを出して終わります</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">
+          <p>ウイルス対策ソフトが tama.exe のダウンロードや起動を止めるときは、tama_NUPX.exe を使ってください。UPX で縮めた実行ファイルは、誤って検出されることがあります。</p>
+        </div>
+        <p>同じファイルを <a href="https://github.com/ukagaka-irono/tama-v6/releases">Releases</a> でも配っています。自分でビルドするときは、Visual Studio（C++ のデスクトップ開発）で <code>tama.sln</code> を開きます。</p>
+<pre><code>git clone --recursive https://github.com/ukagaka-irono/tama-v6.git</code></pre>
+
+        <h2 id="usage">使い方</h2>
+        <ul>
+          <li>SSP でゴーストを起動しておいて、tama.exe を開きます。動いているゴーストが 1 体なら、そのゴーストのログを表示します。何体か動いているときは、選ぶ画面が出ます。</li>
+          <li>ゴーストを決めて開くときは、名前か、ゴーストのウィンドウハンドルを渡します。</li>
+        </ul>
+<pre><code>tama.exe -g ゴースト名
+tama.exe -gh ゴーストのウィンドウハンドル</code></pre>
+        <ul>
+          <li>辞書のどこが間違っているかだけ知りたいときは、<code>yaya.dll</code>（または <code>aya.dll</code>）を tama のウィンドウにドラッグ＆ドロップします。tama がその場で読みこんで、エラーを表示します。</li>
+          <li>ウィンドウの位置や文字の色・フォントは <code>tama.txt</code> に保存されます。ゴーストを決めて開いたときはゴーストの <code>profile\tama.txt</code>、そうでないときは tama.exe と同じ場所の <code>tama.txt</code> です。表示は日本語・中国語・英語に対応しています。</li>
+        </ul>
+        <p>ウィンドウを右クリックすると、次のメニューが出ます。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">メニュー</th><th scope="col">すること</th></tr></thead>
+            <tbody>
+              <tr><td>最初の行へ移動・最後の行へ移動</td><td class="wrap">ログの先頭・末尾に飛ぶ</td></tr>
+              <tr><td>クリップボードにコピーする</td><td class="wrap">選んだログをコピーする（<kbd>Ctrl</kbd>+<kbd>C</kbd>）</td></tr>
+              <tr><td>ログ受信</td><td class="wrap">ログを受け取るかどうかを切りかえる</td></tr>
+              <tr><td>SHIORIの所有権の自動譲渡無効</td><td class="wrap">ゴーストの SHIORI がエラーで止まったとき、tama が代わりに読みこむのをやめる</td></tr>
+              <tr><td>リクエスト送信パネルを開く</td><td class="wrap">SHIORI に送る要求文を書いて送る</td></tr>
+              <tr><td>リロード・アンロード</td><td class="wrap">SHIORI を読みこみ直す・外す</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="tamac">tamac（コマンドライン）</h2>
+        <p>tamac.exe は、YAYA を 1 回読みこんでエラーを調べ、ログを出してすぐ終わります。エラーがあれば、終了コードが 0 以外になります。</p>
+<pre><code>tamac.exe yaya.dll
+tamac.exe yaya.dll -l [fatal|error|warning|note]
+tamac.exe yaya.dll --ci</code></pre>
+        <ul>
+          <li><code>-l</code> で、どの重さからをエラーとして扱うかを決めます。</li>
+          <li><code>--ci</code> を付けるか、環境変数 <code>GITHUB_ACTIONS</code> があると（GitHub Actions の上では自動で）、エラーを GitHub Actions の注釈（<code>::error file=...</code> など）で出します。PR の差分の上に、エラーの場所が出ます。出力は <a href="https://github.com/YAYA-shiori/yaya-CI-check">yaya-CI-check</a> と同じ形です。</li>
+          <li><code>-r</code>（<code>--request</code>）を付けると、標準入力を最後まで読んで SHIORI の要求文として YAYA に送り、応答を標準出力に出して終わります。改行は CRLF にそろえ、終わりの空行も足します。ログはすべて標準エラー出力に出るので、標準出力は応答だけになります。</li>
+        </ul>
+<pre><code>tamac.exe yaya.dll -r &lt; request.txt</code></pre>
+
+        <h2 id="ghost">ゴーストから tama を使う</h2>
+        <p>tama が開いたときと閉じたときに、ゴーストにイベント <code>tamaOpen</code>・<code>tamaExit</code> が届きます（YAYA の辞書では <code>On_tamaOpen</code>・<code>On_tamaExit</code> に書きます）。<code>Reference0</code> は tama のウィンドウハンドルです。ここで <code>SETTAMAHWND</code> を呼ぶと、ゴーストのログが tama に出ます。開いても何も出ないときは、この 2 つを辞書に足してください。</p>
+<pre><code>On_tamaOpen{
+	SETTAMAHWND(reference[0])
+	SHIORI3FW.Push_X_SSTP_PassThru('Title','tama test')//ここから下の設定は書かなくても構いません
+	SHIORI3FW.Push_X_SSTP_PassThru('border.color','626262')
+	SHIORI3FW.Push_X_SSTP_PassThru('background.color','1e1e1e')
+	SHIORI3FW.Push_X_SSTP_PassThru('default.color','4ec9b0')//ほかの設定は tama.txt にあります
+	'tama が開きました'
+}
+On_tamaExit{
+	SETTAMAHWND(0)
+	'tama が閉じました'
+}</code></pre>
+        <p>tama のウィンドウハンドルを変数に入れておき、SHIORI を読みこみ直したあとに <code>SETTAMAHWND</code> をもう一度呼べば、リロードしても tama とつながったままにできます。<a href="https://github.com/YAYA-shiori/yaya-dic">yaya-dic</a> の新しい版には、もう入っています。</p>
+<pre><code>On_tamaOpen{
+	TamaHwnd=reference[0]
+	//...
+}
+On_tamaExit{
+	ERASEVAR('TamaHwnd')
+	//...
+}
+OnInitialize{
+	if reference[0]=='reload'
+		SETTAMAHWND(TamaHwnd)
+	//...
+}</code></pre>
+
+        <h2 id="changes">更新履歴</h2>
+        <ul>
+          <li>v1.0.3.27（v6 から）: 新しい YAYA（Tc571-10 以降）の <code>loadu</code> に対応しました。日本語の Windows で、ハングルなど Shift_JIS にない文字を含むフォルダのゴーストも読みこめます。</li>
+          <li>v1.0.3.27（v6 から）: ログが長くなったとき、古い行を早めに消しすぎていたのを直しました。</li>
+          <li>v1.0.3.26: <code>tamac -r</code> で、長い要求文の中の日本語などが壊れることがあったのを直しました。</li>
+          <li>v1.0.3.25: <code>tamac</code> に <code>-r</code>（<code>--request</code>）を足しました。</li>
+          <li>v1.0.3.24: <code>tamac</code> に <code>--ci</code> を足しました。</li>
+        </ul>
+        <div class="note">
+          <p>tama の「新しい版があります」のお知らせは、いまは本家（<a href="https://github.com/YAYA-shiori/tama/releases">YAYA-shiori/tama</a>）のリリースを見ています。v6 の新しい版は、このページか <a href="https://github.com/ukagaka-irono/tama-v6/releases">Releases</a> で確かめてください。</p>
+        </div>
+
+        <h2 id="license">ライセンス</h2>
+        <p>Unlicense（パブリックドメイン）です。原作者は <a href="http://umeici.onjn.jp/">umeici</a> さんで、<a href="https://github.com/YAYA-shiori/tama">YAYA-shiori/tama</a> での改良をもとにしています。</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><a href="https://github.com/ukagaka-irono">github.com/ukagaka-irono</a></div>
+  </footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>
