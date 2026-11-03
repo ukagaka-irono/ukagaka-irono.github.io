@@ -1,0 +1,444 @@
+charset,UTF-8
+
+descript
+{
+version,1
+}
+//-----------------------------------------
+
+
+//=======================
+//本体（surface0-6,101-184）
+//=======================
+surface0
+{
+//ベース
+	element0,base,surface0.png,0,0
+	
+//屈伸まばたき
+	animation0.interval,random,5
+	animation0.pattern0,base,101,150,0,0
+	animation0.pattern1,base,102,150,0,0
+	animation0.pattern2,base,101,150,0,0
+	animation0.pattern3,base,-1,150,0,0
+	animation0.pattern4,base,103,150,0,0
+	animation0.pattern5,base,104,150,0,0
+	animation0.pattern6,base,103,150,0,0
+	animation0.pattern7,base,-1,150,0,0
+	
+}
+
+//-----------------------------------------
+//surface0+植物（surface1-6）
+//-----------------------------------------
+surface1
+{
+	element0,base,surface0.png,0,0
+	element1,overlay,surface111.png,0,0	
+}
+surface2
+{
+	element0,base,surface0.png,0,0
+	element1,overlay,surface112.png,0,0	
+}
+surface3
+{
+	element0,base,surface0.png,0,0
+	element1,overlay,surface113.png,0,0	
+}
+surface4
+{
+	element0,base,surface0.png,0,0
+	element1,overlay,surface114.png,0,0	
+}
+surface5
+{
+	element0,base,surface0.png,0,0
+	element1,overlay,surface115.png,0,0	
+}
+surface6
+{
+	element0,base,surface0.png,0,0
+	element1,overlay,surface116.png,0,0
+}
+
+//共通アニメ
+surface.append0-6
+{
+//口パク
+	animation1.interval,talk
+	animation1.pattern0,overlay,106,150,0,0
+	animation1.pattern1,overlay,-1,150,0,0
+
+//当たり判定（狭い順に書くこと。先に書いたほうが優先される）
+//  絵の実際の範囲に合わせて詰めてある。広げたい時はここの数値を変える。
+//  書式： collision番号,左,上,右,下,判定名   ／ 原点は画像の左上、単位はピクセル
+	collision0,26,125,66,139,Face
+	collision1,20,122,98,158,Head
+	collision2,34,274,129,295,Foot
+	collision3,38,178,134,248,Body
+}
+
+//-----------------------------------------
+//花付きアニメ
+//-----------------------------------------
+
+//surface1設定（surface131-134）
+//-----------------------------------------
+surface131
+{
+	element0,base,surface101.png,0,0
+	element1,overlay,surface111.png,0,4	
+}
+surface132
+{
+	element0,base,surface102.png,0,0
+	element1,overlay,surface111.png,0,8	
+}
+surface133
+{
+	element0,base,surface103.png,0,0
+	element1,overlay,surface111.png,0,4	
+}
+surface134
+{
+	element0,base,surface104.png,0,0
+	element1,overlay,surface111.png,0,8	
+}
+surface.append1
+{
+//屈伸まばたき
+	animation0.interval,random,5
+	animation0.pattern0,base,131,150,0,0
+	animation0.pattern1,base,132,150,0,0
+	animation0.pattern2,base,131,150,0,0
+	animation0.pattern3,base,-1,150,0,0
+	animation0.pattern4,base,133,150,0,0
+	animation0.pattern5,base,134,150,0,0
+	animation0.pattern6,base,133,150,0,0
+	animation0.pattern7,base,-1,150,0,0
+
+//当たり判定（頭の植物）
+	collision4,60,96,83,119,Plant
+}
+
+//surface2設定（surface141-144）
+//-----------------------------------------
+surface141
+{
+	element0,base,surface101.png,0,0
+	element1,overlay,surface112.png,0,4	
+}
+surface142
+{
+	element0,base,surface102.png,0,0
+	element1,overlay,surface112.png,0,8	
+}
+surface143
+{
+	element0,base,surface103.png,0,0
+	element1,overlay,surface112.png,0,4	
+}
+surface144
+{
+	element0,base,surface104.png,0,0
+	element1,overlay,surface112.png,0,8	
+}
+surface.append2
+{
+//屈伸まばたき
+	animation0.interval,random,5
+	animation0.pattern0,base,141,150,0,0
+	animation0.pattern1,base,142,150,0,0
+	animation0.pattern2,base,141,150,0,0
+	animation0.pattern3,base,-1,150,0,0
+	animation0.pattern4,base,143,150,0,0
+	animation0.pattern5,base,144,150,0,0
+	animation0.pattern6,base,143,150,0,0
+	animation0.pattern7,base,-1,150,0,0
+
+//当たり判定（頭の植物）
+	collision4,48,96,83,119,Plant
+}
+
+//surface3設定（surface151-154）
+//-----------------------------------------
+surface151
+{
+	element0,base,surface101.png,0,0
+	element1,overlay,surface113.png,0,4	
+}
+surface152
+{
+	element0,base,surface102.png,0,0
+	element1,overlay,surface113.png,0,8	
+}
+surface153
+{
+	element0,base,surface103.png,0,0
+	element1,overlay,surface113.png,0,4	
+}
+surface154
+{
+	element0,base,surface104.png,0,0
+	element1,overlay,surface113.png,0,8	
+}
+surface.append3
+{
+//屈伸まばたき
+	animation0.interval,random,5
+	animation0.pattern0,base,151,150,0,0
+	animation0.pattern1,base,152,150,0,0
+	animation0.pattern2,base,151,150,0,0
+	animation0.pattern3,base,-1,150,0,0
+	animation0.pattern4,base,153,150,0,0
+	animation0.pattern5,base,154,150,0,0
+	animation0.pattern6,base,153,150,0,0
+	animation0.pattern7,base,-1,150,0,0
+
+//当たり判定（頭の植物）
+	collision4,48,72,83,119,Plant
+}
+
+//surface4設定（surface161-164）
+//-----------------------------------------
+surface161
+{
+	element0,base,surface101.png,0,0
+	element1,overlay,surface114.png,0,4	
+}
+surface162
+{
+	element0,base,surface102.png,0,0
+	element1,overlay,surface114.png,0,8	
+}
+surface163
+{
+	element0,base,surface103.png,0,0
+	element1,overlay,surface114.png,0,4	
+}
+surface164
+{
+	element0,base,surface104.png,0,0
+	element1,overlay,surface114.png,0,8	
+}
+surface.append4
+{
+//屈伸まばたき
+	animation0.interval,random,5
+	animation0.pattern0,base,161,150,0,0
+	animation0.pattern1,base,162,150,0,0
+	animation0.pattern2,base,161,150,0,0
+	animation0.pattern3,base,-1,150,0,0
+	animation0.pattern4,base,163,150,0,0
+	animation0.pattern5,base,164,150,0,0
+	animation0.pattern6,base,163,150,0,0
+	animation0.pattern7,base,-1,150,0,0
+
+//当たり判定（頭の植物）
+	collision4,24,64,83,119,Plant
+}
+
+//surface5設定（surface171-174）
+//-----------------------------------------
+surface171
+{
+	element0,base,surface101.png,0,0
+	element1,overlay,surface115.png,0,4	
+}
+surface172
+{
+	element0,base,surface102.png,0,0
+	element1,overlay,surface115.png,0,8	
+}
+surface173
+{
+	element0,base,surface103.png,0,0
+	element1,overlay,surface115.png,0,4	
+}
+surface174
+{
+	element0,base,surface104.png,0,0
+	element1,overlay,surface115.png,0,8	
+}
+surface.append5
+{
+//屈伸まばたき
+	animation0.interval,random,5
+	animation0.pattern0,base,171,150,0,0
+	animation0.pattern1,base,172,150,0,0
+	animation0.pattern2,base,171,150,0,0
+	animation0.pattern3,base,-1,150,0,0
+	animation0.pattern4,base,173,150,0,0
+	animation0.pattern5,base,174,150,0,0
+	animation0.pattern6,base,173,150,0,0
+	animation0.pattern7,base,-1,150,0,0
+
+//当たり判定（頭の植物）
+	collision4,24,28,83,119,Plant
+}
+
+//surface6設定（surface181-184）
+//-----------------------------------------
+surface181
+{
+	element0,base,surface101.png,0,0
+	element1,overlay,surface116.png,0,4	
+}
+surface182
+{
+	element0,base,surface102.png,0,0
+	element1,overlay,surface116.png,0,8	
+}
+surface183
+{
+	element0,base,surface103.png,0,0
+	element1,overlay,surface116.png,0,4	
+}
+surface184
+{
+	element0,base,surface104.png,0,0
+	element1,overlay,surface116.png,0,8	
+}
+surface.append6
+{
+//屈伸まばたき
+	animation0.interval,random,5
+	animation0.pattern0,base,181,150,0,0
+	animation0.pattern1,base,182,150,0,0
+	animation0.pattern2,base,181,150,0,0
+	animation0.pattern3,base,-1,150,0,0
+	animation0.pattern4,base,183,150,0,0
+	animation0.pattern5,base,184,150,0,0
+	animation0.pattern6,base,183,150,0,0
+	animation0.pattern7,base,-1,150,0,0
+
+//当たり判定（頭の植物）
+	collision4,20,28,83,119,Plant
+}
+
+//-----------------------------------------
+//屈伸まばたきのコマの当たり判定
+//
+//  base のアニメーションは当たり判定もコマのサーフィスのものに切り替えるので、
+//  コマにも判定を書いておかないと、動いている間だけ撫でても反応しなくなる。
+//  コマでは顔と頭が 4px（101,103 系）／8px（102,104 系）下がる。
+//  胴は上だけ下がって下端はそのまま、足は動かない。
+//-----------------------------------------
+surface.append101,103,131,133,141,143,151,153,161,163,171,173,181,183
+{
+	collision0,26,129,66,143,Face
+	collision1,20,126,98,162,Head
+	collision2,34,274,129,295,Foot
+	collision3,38,182,134,248,Body
+}
+surface.append102,104,132,134,142,144,152,154,162,164,172,174,182,184
+{
+	collision0,26,133,66,147,Face
+	collision1,20,130,98,166,Head
+	collision2,34,274,129,295,Foot
+	collision3,38,186,134,248,Body
+}
+
+//頭の植物（surface1-6 の判定を、植物の重ね位置と同じだけ下げたもの）
+surface.append131,133
+{
+	collision4,60,100,83,123,Plant
+}
+surface.append132,134
+{
+	collision4,60,104,83,127,Plant
+}
+surface.append141,143
+{
+	collision4,48,100,83,123,Plant
+}
+surface.append142,144
+{
+	collision4,48,104,83,127,Plant
+}
+surface.append151,153
+{
+	collision4,48,76,83,123,Plant
+}
+surface.append152,154
+{
+	collision4,48,80,83,127,Plant
+}
+surface.append161,163
+{
+	collision4,24,68,83,123,Plant
+}
+surface.append162,164
+{
+	collision4,24,72,83,127,Plant
+}
+surface.append171,173
+{
+	collision4,24,32,83,123,Plant
+}
+surface.append172,174
+{
+	collision4,24,36,83,127,Plant
+}
+surface.append181,183
+{
+	collision4,20,32,83,123,Plant
+}
+surface.append182,184
+{
+	collision4,20,36,83,127,Plant
+}
+
+
+
+
+
+
+
+//=======================
+//相方（surface10,1001-1008）
+//=======================
+surface10
+{
+	element0,base,surface10.png,0,0
+}
+//-----------------------------------------
+
+surface.append10
+{
+//動き
+	animation10.interval,random,3
+	animation10.pattern0,base,1001,100,0,0
+	animation10.pattern1,base,1002,100,0,0
+	animation10.pattern2,base,1003,100,0,0
+	animation10.pattern3,base,1004,100,0,0
+	animation10.pattern4,base,1003,100,0,0
+	animation10.pattern5,base,1002,100,0,0
+	animation10.pattern6,base,1001,100,0,0
+	animation10.pattern7,base,-1,100,0,0
+//口パク
+	animation11.interval,talk
+	animation11.pattern0,overlay,1006,150,0,0
+	animation11.pattern1,overlay,-1,150,0,0
+	
+//まばたき
+	animation12.interval,random,5
+	animation12.pattern0,overlay,1007,50,0,0
+	animation12.pattern1,overlay,1008,50,0,0
+	animation12.pattern2,overlay,1007,50,0,0
+	animation12.pattern3,overlay,-1,50,0,0
+
+//当たり判定（狭い順に書くこと。先に書いたほうが優先される）
+	collision0,28,30,62,47,Antenna
+	collision1,30,72,66,86,Face
+	collision2,24,62,92,114,Body
+}
+
+//動きのコマの当たり判定（base で差し替わる間も反応するように。目と口の位置は動かない）
+surface.append1001-1004
+{
+	collision0,28,30,62,47,Antenna
+	collision1,30,72,66,86,Face
+	collision2,24,62,92,114,Body
+}

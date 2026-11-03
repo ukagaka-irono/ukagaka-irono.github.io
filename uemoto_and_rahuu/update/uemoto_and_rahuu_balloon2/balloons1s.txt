@@ -1,0 +1,15 @@
+charset,UTF-8
+// 右向き。体が右へ 10px ずれ、双葉が右上に来る。しっぽは左下で下向き
+origin.x,32
+validrect.left,32
+validrect.right,-31
+arrow0.x,-30
+arrow1.x,-30
+sstpmarker.x,32
+sstpmessage.x,74
+// 下向きのしっぽの分（22px）だけ画像が縦に長いので、下からの位置をずらす
+validrect.bottom,-35
+arrow0.y,-56
+arrow1.y,-46
+sstpmarker.y,-56
+sstpmessage.y,-54

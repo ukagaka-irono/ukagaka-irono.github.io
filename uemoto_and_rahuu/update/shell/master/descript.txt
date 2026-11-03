@@ -1,0 +1,11 @@
+charset,UTF-8
+type,shell
+
+name,something:bloom
+craftmanw,笙はくさむのぶもり
+craftmanurl,https://rocketsalad.studio.site/
+
+//------------------------------------------------------------------------------
+seriko.use_self_alpha,1
+
+

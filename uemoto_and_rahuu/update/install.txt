@@ -1,0 +1,8 @@
+charset, UTF-8
+type,ghost
+name,植本とラフウ
+directory,uemoto_and_rahuu
+balloon0.directory,uemoto_and_rahuu_balloon
+balloon0.source.directory,uemoto_and_rahuu_balloon
+balloon1.directory,uemoto_and_rahuu_balloon2
+balloon1.source.directory,uemoto_and_rahuu_balloon2

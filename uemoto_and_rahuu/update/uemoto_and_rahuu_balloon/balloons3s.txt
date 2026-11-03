@@ -1,0 +1,9 @@
+charset,UTF-8
+// 植本はしっぽが下向き（右下、反対向きは左下）で、画像が縦に 12px 長い（316x152）。
+// 下からの位置をその分ずらす。
+validrect.bottom,-26
+arrow1.y,-36
+sstpmarker.y,-28
+sstpmessage.y,-30
+onlinemarker.y,-40
+number.y,-30

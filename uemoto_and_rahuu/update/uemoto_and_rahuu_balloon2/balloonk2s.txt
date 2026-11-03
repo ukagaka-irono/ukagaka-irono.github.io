@@ -1,0 +1,6 @@
+charset,UTF-8
+// 左向き。雲としずくが左上（y=44 まで）にあるので、文字は y=46 から
+origin.x,22
+origin.y,46
+validrect.left,22
+validrect.top,46

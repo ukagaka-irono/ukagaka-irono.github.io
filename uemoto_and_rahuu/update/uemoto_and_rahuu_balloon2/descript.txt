@@ -1,0 +1,74 @@
+charset,UTF-8
+type,balloon
+name,ふたばとあまぐも
+
+craftman,ukagaka-irono
+craftmanw,伺々　彩乃
+craftmanurl,https://github.com/ukagaka-irono
+
+//------------------------------------------------------------------------------
+// 植本とラフウ専用バルーン（その2）
+//   balloons0〜3 … 植本（緑、左上か右上に双葉。しっぽは下向きで、0/2 は右下、1/3 は左下）
+//   balloonk0〜3 … ラフウ（青、左上か右上に雲としずく。しっぽは横向き）
+//   ラフウの 0/1 は 242x134、2/3（\b[2]）は 338x214。
+//   植本は下向きのしっぽの分だけ縦に 22px 長い（242x156、338x236）。
+//   デザインのシートから切り出した後、しっぽを組み替えている（植本は横のしっぽを
+//   回して下へ、ラフウは 12px 下へ）。
+//
+// ここに書いた文字の範囲は balloons0 / balloons2 用。
+// 向きや飾りの位置が違うものは balloons1s.txt などで上書きしている。
+//   植本 … 双葉の茎（左上なら x=16〜27、y=31 まで）を避ける
+//   ラフウ … 雲としずく（y=44 まで）を避けて、文字は y=46 から
+//------------------------------------------------------------------------------
+use_self_alpha,1
+paint_transparent_region_black,0
+
+//---- 文字の範囲（マイナスは右下から）
+origin.x,30
+origin.y,24
+validrect.left,30
+validrect.top,24
+validrect.right,-33
+validrect.bottom,-13
+
+//---- 文字
+font.height,12
+font.color.r,46
+font.color.g,58
+font.color.b,42
+
+//---- リンク
+anchor.font.color.r,47
+anchor.font.color.g,122
+anchor.font.color.b,16
+
+//---- 選択肢
+cursor.style,square
+cursor.brush.color.r,214
+cursor.brush.color.g,232
+cursor.brush.color.b,190
+cursor.pen.color.r,30
+cursor.pen.color.g,74
+cursor.pen.color.b,38
+cursor.font.color.r,0
+cursor.font.color.g,0
+cursor.font.color.b,0
+
+//---- スクロールの矢印（右下に上下で並べる。arrow0/1.png は 14x8）
+arrow0.x,-40
+arrow0.y,-34
+arrow1.x,-40
+arrow1.y,-24
+
+//---- SSTP の受信表示（sstp.png は 38x18、左下）
+sstpmarker.x,22
+sstpmarker.y,-34
+sstpmessage.x,64
+sstpmessage.y,-32
+sstpmessage.font.height,10
+
+//---- 入力欄（balloonc0〜3 は 290x64。白い所に文字を書く）
+communicatebox.x,16
+communicatebox.y,28
+communicatebox.width,256
+communicatebox.height,20

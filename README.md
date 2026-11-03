@@ -16,7 +16,13 @@ assets/js/site.js          コードのコピーボタン
 assets/js/theme.js         ライト／ダークの切りかえ（<head> で読む）
 .nojekyll                  Jekyll を通さずそのまま公開する
 engawa/app/index.html      Engawa のリリースの index.html をそのまま置いたもの（このサイトで動かす版）
+uemoto_and_rahuu/          ゴースト「植本とラフウ」の配布ページ（index.html）と nar
+uemoto_and_rahuu/update/   植本とラフウのネットワーク更新ファイル（ゴーストの descript.txt の homeurl）
 ```
+
+植本とラフウの nar と `uemoto_and_rahuu/update/` は、ゴーストのリポジトリ（非公開）の
+`tools/publish-pages.ps1` で入れかえます。手で直さないでください。版を出したら、
+`uemoto_and_rahuu/index.html` とトップの版の数字を直します。
 
 Engawa の新しい版が出たら、`engawa/app/index.html` を入れかえて、`engawa/index.html` と
 トップの版の数字を直します。

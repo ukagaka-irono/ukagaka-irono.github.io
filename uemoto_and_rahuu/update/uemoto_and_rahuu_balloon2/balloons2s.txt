@@ -1,0 +1,8 @@
+charset,UTF-8
+// 左向き。しっぽは右下で下向き
+// 下向きのしっぽの分（22px）だけ画像が縦に長いので、下からの位置をずらす
+validrect.bottom,-35
+arrow0.y,-56
+arrow1.y,-46
+sstpmarker.y,-56
+sstpmessage.y,-54

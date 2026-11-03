@@ -1,0 +1,79 @@
+charset,UTF-8
+type,balloon
+name,ふたばとしょっかく
+
+craftman,ukagaka-irono
+craftmanw,伺々　彩乃
+craftmanurl,https://github.com/ukagaka-irono
+
+//------------------------------------------------------------------------------
+// 植本とラフウ専用バルーン
+//   balloons0/1 … 植本（若葉色、上に双葉）
+//   balloonk0/1 … ラフウ（だいだい色、上に触角）
+// 画像は 316x140。左右に 12px ずつ尻尾の場所、上に 8px の飾りの場所がある。
+// 吹き出しの本体は x=12〜303、y=8〜139。
+//------------------------------------------------------------------------------
+use_self_alpha,1
+paint_transparent_region_black,0
+
+//---- 文字の範囲（マイナスは右下から）
+origin.x,24
+origin.y,18
+validrect.left,24
+validrect.top,18
+validrect.right,-24
+validrect.bottom,-14
+
+//---- 文字
+font.height,12
+font.color.r,59
+font.color.g,74
+font.color.b,38
+
+//---- リンク
+anchor.font.color.r,47
+anchor.font.color.g,122
+anchor.font.color.b,16
+
+//---- 選択肢
+cursor.style,square
+cursor.brush.color.r,201
+cursor.brush.color.g,216
+cursor.brush.color.b,139
+cursor.pen.color.r,108
+cursor.pen.color.g,145
+cursor.pen.color.b,51
+cursor.font.color.r,0
+cursor.font.color.g,0
+cursor.font.color.b,0
+
+//---- スクロールの矢印
+arrow0.x,-36
+arrow0.y,16
+arrow1.x,-36
+arrow1.y,-24
+
+//---- SSTP の受信表示
+sstpmarker.x,24
+sstpmarker.y,-16
+sstpmessage.x,36
+sstpmessage.y,-18
+sstpmessage.font.height,10
+
+//---- ネットワーク受信中の表示（online0〜1 を順に）
+onlinemarker.x,-56
+onlinemarker.y,-28
+
+//---- ページ番号
+number.font.height,10
+number.font.color.r,59
+number.font.color.g,74
+number.font.color.b,38
+number.xr,-48
+number.y,-18
+
+//---- 入力欄（balloonc0〜3 は 300x40）
+communicatebox.x,8
+communicatebox.y,10
+communicatebox.width,284
+communicatebox.height,20

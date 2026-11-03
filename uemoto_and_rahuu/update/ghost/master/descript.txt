@@ -1,0 +1,34 @@
+charset,UTF-8
+
+name,植本とラフウ
+type,ghost
+
+sakura.name,植本
+kero.name,ラフウ
+
+//---- 同梱している専用バルーン「ふたばとしょっかく」（uemoto_and_rahuu_balloon/）を標準にする
+//     もう1つの「ふたばとあまぐも」（uemoto_and_rahuu_balloon2/）はメニューから選べる
+balloon,ふたばとしょっかく
+
+sstp.allowunspecifiedsend,1
+
+icon,icon.ico
+
+shiori,yaya.dll
+
+// 現作者。旧作者（月見里　彩葉 / yamanashi-iroha、5版まで）は readme.txt のクレジットに記載
+craftman,ukagaka-irono
+craftmanw,伺々　彩乃
+craftmanurl,https://github.com/ukagaka-irono
+
+//------------------------------------------------------------------------------
+// ネットワーク更新の基準URL
+// 末尾の / は必須。ここに updates2.dau とゴースト一式を置く。
+// 11版から GitHub Pages（ukagaka-irono.github.io リポジトリ）に置いている。
+// 中身は tools/publish-pages.ps1 で作る。10版まではななろだ
+// （https://cherry.narnaloader.ukagaka.net/data/uemoto_and_rahuu/）だった。
+//
+// SHIORI側（On_homeurl）にも同じ設定ができるが、両方に書くと
+// 移転時に片方の直し忘れで更新エラーになるため、こちらだけにしてある。
+//------------------------------------------------------------------------------
+homeurl,https://ukagaka-irono.github.io/uemoto_and_rahuu/update/
