@@ -24,7 +24,7 @@
     <p class="breadcrumb"><a href="../">一覧</a> &gt; 伺か &gt; pono-droid</p>
     <h1>pono-droid</h1>
     <p class="intro">伺か（ukagaka）のゴーストを Android で動かすベースウェアです。ゴーストをほかのアプリの上に常駐させます。SHIORI は YAYA・里々・華和梨・Kagari を Android 向けにビルドして使っています。</p>
-    <p class="meta"><a href="https://github.com/ukagaka-irono/pono-droid">リポジトリ</a> ・ <a href="https://github.com/ukagaka-irono/pono-droid/releases">Releases</a> ・ Android 8.0 以上 ・ Apache-2.0</p>
+    <p class="meta"><a href="https://github.com/ukagaka-irono/pono-droid">リポジトリ</a> ・ <a href="https://github.com/ukagaka-irono/pono-droid/releases">Releases</a> ・ v0.1.0-beta.1 ・ Android 8.0 以上 ・ Apache-2.0</p>
 
     <div class="doc">
       <nav class="toc" aria-labelledby="toc-title">
@@ -58,7 +58,7 @@
 
         <h2 id="install">入れ方</h2>
         <ol>
-          <li><a href="https://github.com/ukagaka-irono/pono-droid/releases">Releases</a> から APK を落としてインストールします。まだ版が出ていないときは<a href="#build">自分でビルド</a>してください。</li>
+          <li><a href="https://github.com/ukagaka-irono/pono-droid/releases">Releases</a> から APK（いまは <code>pono-droid-v0.1.0-beta.1.apk</code>、約 155 MB）を落としてインストールします。ベータ版です。</li>
           <li>起動して、「他のアプリの上に重ねて表示」を許可します。常駐中の通知から終了・更新するので、通知の許可も求められます。</li>
         </ol>
 
@@ -115,7 +115,7 @@
 <pre><code>git submodule update --init --recursive</code></pre>
         <p><code>local.properties</code> に <code>sdk.dir=...</code> を書くか、<code>ANDROID_HOME</code> を設定してからビルドします。</p>
 <pre><code>./gradlew :app:assembleDebug</code></pre>
-        <p>APK は <code>app/build/outputs/apk/debug/app-debug.apk</code> にできます。デバッグ版は開いてすぐの動きがカクつくので、ふだん使うなら次のほうがいいです（中身はリリースと同じで、デバッグ用の鍵で署名した版。データを残したまま入れられます）。</p>
+        <p>APK は <code>app/build/outputs/apk/debug/app-debug.apk</code> にできます。デバッグ版（と下のベンチマーク版）は <code>net.pono.droid.debug</code> という別のアプリになるので、リリースの版（<code>net.pono.droid</code>）と並べて入れられます。データも別々です。デバッグ版は開いてすぐの動きがカクつくので、ふだん使うなら次のほうがいいです（中身はリリースと同じで、デバッグ用の鍵で署名した版。デバッグ版の上に、データを残したまま入れられます）。</p>
 <pre><code>./gradlew :app:installBenchmark</code></pre>
         <p>テストは <code>./gradlew :baseware:test</code> です。</p>
       </div>

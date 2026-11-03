@@ -24,7 +24,7 @@
     <p class="breadcrumb"><a href="../">一覧</a> &gt; Minecraft &gt; Spoon</p>
     <h1>Spoon（MinecraftSpoon）</h1>
     <p class="intro">Minecraft 1.7.10 の Minecraft Forge 10.13.4.1614 をもとにしたものです。Forge と FML のパッケージ・mod ID・版の数字はそのまま残してあるので、いまある 1.7.10 の Forge の mod が、そのまま読みこめます。そのうえで、日本語入力（IME）を使いやすくしたり、看板にカーソルを付けたりしています。</p>
-    <p class="meta"><a href="https://github.com/ukagaka-irono/MinecraftSpoon/tree/spoon">リポジトリ（spoon ブランチ）</a> ・ Spoon 1.0.0 ・ Minecraft 1.7.10 ・ Forge 10.13.4.1614 ・ Forge Public License</p>
+    <p class="meta"><a href="https://github.com/ukagaka-irono/MinecraftSpoon">リポジトリ</a> ・ <a href="https://github.com/ukagaka-irono/MinecraftSpoon/releases">Releases</a> ・ 1.0.0-beta.1 ・ Minecraft 1.7.10 ・ Forge 10.13.4.1614 ・ Java 8 ・ Forge Public License</p>
 
     <div class="doc">
       <nav class="toc" aria-labelledby="toc-title">
@@ -42,7 +42,7 @@
 
       <div class="content">
         <div class="note">
-          <p>Spoon の中身は <code>spoon</code> ブランチにあります。リポジトリを開いたときに出る <code>1.7.10</code> ブランチは、もとの Forge のままです。</p>
+          <p>1.0.0-beta.1 はベータ版です。試す前にワールドのバックアップを取ってください。</p>
         </div>
 
         <h2 id="changes">Forge から変えたところ</h2>
@@ -50,10 +50,11 @@
           <li>日本語・中国語・韓国語の IME を入れたままでも、WASD などで動けます（<a href="#ime">下で説明</a>）。IME で打った文字は、チャット・看板などの入力欄に届き、変換の窓はカーソルのところに出ます。</li>
           <li>看板に動かせるカーソルが付きます（矢印キー・Home / End・Delete）。行の途中にも文字を入れられ、1 行には板に収まる文字だけが入ります。</li>
           <li>全角の英字（ｋ など）の幅を、描いている幅どおりに数えるので、それを含む中央ぞろえの文字が左にずれません。</li>
+          <li>mod の一覧を Mod Menu 風にしています。左に検索・並べかえ・ロゴのアイコンと印、右に説明（Website と Config のボタン、押せるリンク、流れる文字）があり、「mods フォルダを開く」ボタンもあります。Forge のもとの一覧（GuiModList）は変えずに残してあるので、それを広げている mod（EnderCore など）も動きます。</li>
           <li>タイトル画面から Minecraft Realms をなくし、その場所に横長の「Mods」ボタンを置いています。</li>
           <li>起動が速くなります（mod を探すときにメソッドの中身を読まない）。読みこみの段階ごとに、かかった時間を「Spoon startup: …」としてログに出します。</li>
           <li>タイトル画面と F3 には「Spoon &lt;版&gt; (Forge 10.13.4.1614)」と出ます。クライアントとサーバーのブランドは <code>fml,forge,spoon</code> です。</li>
-          <li>Forge の更新の確認はしません（Spoon にはまだ更新のサーバーがありません）。</li>
+          <li>Forge の更新の確認はしません（Spoon にはまだ更新のサーバーがありません）。新しい版は <a href="https://github.com/ukagaka-irono/MinecraftSpoon/releases">Releases</a> で知らせます。</li>
         </ul>
 
         <h2 id="ime">日本語入力</h2>
@@ -61,17 +62,23 @@
         <p>この動きがいらないときは、<code>config/forge.cfg</code> の <code>imeControl</code> を <code>false</code> にします。</p>
 
         <h2 id="get">手に入れる</h2>
-        <p>まだリリース（配布用のファイル）はありません。いまは<a href="#build">自分でビルド</a>して、できたものを使います。</p>
-        <ul>
-          <li>Prism Launcher のインスタンス（<code>spoon-…-prism.zip</code>）: いちばん手軽です（<a href="#prism">下で説明</a>）。</li>
-          <li>ユニバーサル jar とインストーラー: <code>build/distributions</code> にできます。</li>
-        </ul>
+        <p><a href="https://github.com/ukagaka-irono/MinecraftSpoon/releases">Releases</a> から、使い方に合うものを落とします（ファイル名は <code>spoon-1.7.10-10.13.4.1614-spoon1.0.0-beta.1-…</code>）。Forge 1.7.10 と同じく、Java 8 で動かします。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">ファイル</th><th scope="col">使いみち</th></tr></thead>
+            <tbody>
+              <tr><td><code>…-prism.zip</code></td><td class="wrap">Prism Launcher のインスタンス。いちばん手軽で、Spoon はこれで試しています（<a href="#prism">下で説明</a>）</td></tr>
+              <tr><td><code>…-installer.jar</code></td><td class="wrap">Forge 1.7.10 のインストーラーを Spoon 用にしたもの</td></tr>
+              <tr><td><code>…-universal.jar</code></td><td class="wrap">Spoon の jar そのもの。手で入れるとき用</td></tr>
+              <tr><td><code>…-changelog.txt</code></td><td class="wrap">Forge から変えたことの一覧</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>リリースのページに、それぞれの SHA-256 も載せています。</p>
 
         <h2 id="prism">Prism Launcher で遊ぶ</h2>
         <ol>
-          <li>Prism Launcher のインスタンスを作ります（<a href="#build">ビルド</a>の環境で）。
-<pre><code>.\gradlew.bat packagePrism</code></pre>
-            <code>build/distributions/spoon-…-prism.zip</code> ができます。</li>
+          <li>Releases から <code>…-prism.zip</code> を落とします（自分で作るときは、<a href="#build">ビルド</a>の環境で <code>.\gradlew.bat packagePrism</code>）。</li>
           <li>Prism Launcher で「インスタンスを追加」→「インポート」を開き、その zip をえらびます。</li>
           <li>Minecraft 1.7.10 とライブラリは、Prism が自分で落としてきます。あとは、ふつうのインスタンスと同じように起動します。</li>
         </ol>
