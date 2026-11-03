@@ -1,0 +1,75 @@
+charset,UTF-8
+type,balloon
+name,Maid Classic
+id,maid_classic
+craftman,Claude
+craftmanw,Claude
+// ネットワーク更新の取得先。GitHub Pages（ukagaka-irono.github.io リポジトリ）に置いている。
+// 中身は tools/publish-pages.ps1 で作る。以前はななろだ
+// （https://cherry.narnaloader.ukagaka.net/data/maid_classic/）だった。
+homeurl,https://ukagaka-irono.github.io/maid_classic/update/
+
+//---- 文字 ----
+font.name,メイリオ
+font.height,12
+font.color.r,58
+font.color.g,40
+font.color.b,68
+font.shadowcolor,none
+disable.font.color.r,170
+disable.font.color.g,160
+disable.font.color.b,175
+
+//---- テキスト領域（負の値は右端・下端からの距離） ----
+origin.x,22
+origin.y,24
+validrect.left,22
+validrect.top,24
+validrect.right,-18
+validrect.bottom,-28
+wordwrappoint.x,-20
+
+//---- 選択肢カーソル ----
+cursor.style,square
+cursor.pen.color.r,196
+cursor.pen.color.g,163
+cursor.pen.color.b,104
+cursor.brush.color.r,250
+cursor.brush.color.g,236
+cursor.brush.color.b,214
+cursor.font.color.r,74
+cursor.font.color.g,52
+cursor.font.color.b,86
+
+//---- アンカー ----
+anchor.style,underline
+anchor.font.color.r,176
+anchor.font.color.g,96
+anchor.font.color.b,112
+anchor.pen.color.r,214
+anchor.pen.color.g,150
+anchor.pen.color.b,160
+
+//---- スクロール矢印 ----
+arrow0.x,-26
+arrow0.y,14
+arrow1.x,-26
+arrow1.y,-26
+
+//---- マーカー類 ----
+sstpmarker.x,18
+sstpmarker.y,-24
+sstpmessage.x,44
+sstpmessage.y,-26
+sstpmessage.font.height,10
+onlinemarker.x,-36
+onlinemarker.y,-24
+number.font.height,10
+number.xr,-40
+number.y,-25
+
+//---- コミュニケート／入力ボックス ----
+communicatebox.x,22
+communicatebox.y,32
+communicatebox.width,296
+communicatebox.height,24

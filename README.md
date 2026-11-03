@@ -18,11 +18,16 @@ assets/js/theme.js         ライト／ダークの切りかえ（<head> で読�
 engawa/app/index.html      Engawa のリリースの index.html をそのまま置いたもの（このサイトで動かす版）
 uemoto_and_rahuu/          ゴースト「植本とラフウ」の配布ページ（index.html）と nar
 uemoto_and_rahuu/update/   植本とラフウのネットワーク更新ファイル（ゴーストの descript.txt の homeurl）
+maid_classic/              バルーン「Maid Classic」の配布ページ（index.html）と nar
+maid_classic/update/       Maid Classic のネットワーク更新ファイル（バルーンの descript.txt の homeurl）
 ```
 
 植本とラフウの nar と `uemoto_and_rahuu/update/` は、ゴーストのリポジトリ（非公開）の
 `tools/publish-pages.ps1` で入れかえます。手で直さないでください。版を出したら、
 `uemoto_and_rahuu/index.html` とトップの版の数字を直します。
+
+Maid Classic の nar と `maid_classic/update/` も同じく、バルーンのリポジトリ（非公開）の
+`tools/publish-pages.ps1` で入れかえます。版を出したら `maid_classic/index.html` の日付を直します。
 
 Engawa の新しい版が出たら、`engawa/app/index.html` を入れかえて、`engawa/index.html` と
 トップの版の数字を直します。
