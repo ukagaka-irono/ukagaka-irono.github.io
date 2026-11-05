@@ -81,8 +81,17 @@
           <li>Releases から <code>…-prism.zip</code> を落とします（自分で作るときは、<a href="#build">ビルド</a>の環境で <code>.\gradlew.bat packagePrism</code>）。</li>
           <li>Prism Launcher で「インスタンスを追加」→「インポート」を開き、その zip をえらびます。</li>
           <li>Minecraft 1.7.10 とライブラリは、Prism が自分で落としてきます。あとは、ふつうのインスタンスと同じように起動します。</li>
+          <li>mod は、インスタンスの <code>mods</code> フォルダに入れます。ゲームの中の mod の一覧にある「Open Mods Folder」でも開けます。</li>
         </ol>
+        <p>Prism が Java 8 をえらばないときは、インスタンスの設定で Java 8 を指定します。</p>
         <p>Spoon は Prism の一覧には入っていないので、zip の中に Spoon の部品（<code>patches/io.github.ukagaka-irono.spoon.json</code>）を入れてあります。</p>
+
+        <h3>公式ランチャーで遊ぶ</h3>
+        <ol>
+          <li>公式ランチャーで、Minecraft 1.7.10 を一度起動します。</li>
+          <li><code>…-installer.jar</code> を Java 8 で動かし、「Install client」をえらびます。</li>
+          <li>ランチャーに <code>Spoon</code> という起動構成ができます。</li>
+        </ol>
 
         <h2 id="build">ビルド</h2>
         <p>要るもの:</p>

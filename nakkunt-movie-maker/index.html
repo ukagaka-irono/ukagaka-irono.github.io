@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NakkuntMovieMaker - ukagaka-irono</title>
-  <meta name="description" content="動画編集ソフト NakkuntMovieMaker。">
+  <title>NakkuntMovieMaker の使い方 - ukagaka-irono</title>
+  <meta name="description" content="動画編集ソフト NakkuntMovieMaker の入れ方と使い方。一般的な動画編集と、ゆっくり解説動画づくりができます。">
   <link rel="stylesheet" href="../assets/css/style.css">
   <script src="../assets/js/theme.js"></script>
 </head>
@@ -23,12 +23,93 @@
   <main id="main" class="container">
     <p class="breadcrumb"><a href="../">一覧</a> &gt; 動画 &gt; NakkuntMovieMaker</p>
     <h1>NakkuntMovieMaker</h1>
-    <p class="intro">動画編集ソフトです。まだリポジトリに中身を公開していないので、使い方は公開してから書きます。</p>
-    <p class="meta"><a href="https://github.com/ukagaka-irono/NakkuntMovieMaker">リポジトリ</a></p>
+    <p class="intro">動画編集ソフトです。一般的な動画編集と、ゆっくり解説動画を最初から最後まで作るための機能が入っています。</p>
+    <p class="meta"><a href="https://github.com/ukagaka-irono/NakkuntMovieMaker/releases/tag/v0.0.1.1-beta">0.0.1.1 β</a>（2026年11月4日） ・ Windows 10・11（64 ビット） ・ MIT ・ <a href="https://github.com/ukagaka-irono/NakkuntMovieMaker">リポジトリ</a></p>
+
+    <div class="doc">
+      <nav class="toc" aria-labelledby="toc-title">
+        <h2 id="toc-title">目次</h2>
+        <ol>
+          <li><a href="#install">入れる</a></li>
+          <li><a href="#features">できること</a></li>
+          <li><a href="#voice">セリフの読み上げ</a></li>
+          <li><a href="#cli">コマンドライン</a></li>
+          <li><a href="#limits">わかっている制限</a></li>
+          <li><a href="#build">ソースからビルドする</a></li>
+          <li><a href="#license">ライセンス</a></li>
+        </ol>
+      </nav>
+
+      <div class="content">
+        <div class="warn">
+          <p>β 版です。保存の形式や操作は、これから変わることがあります。大事なプロジェクトは、こまめにバックアップしてください。</p>
+        </div>
+
+        <h2 id="install">入れる</h2>
+        <ol>
+          <li><a href="https://github.com/ukagaka-irono/NakkuntMovieMaker/releases/tag/v0.0.1.1-beta">リリース 0.0.1.1 β</a> から <code>NakkuntMovieMaker-0.0.1.1-beta-win-x64.zip</code>（約 130 MB）を落とします。</li>
+          <li>zip を展開して、<code>NakkuntMovieMaker.exe</code> を起動します。.NET を入れる必要はありません。</li>
+        </ol>
+        <p>SHA-256: <code>8657df179afe92b10a108c9b9eb9f262a24c46eba3bc2ae972e26e6bf675a8af</code></p>
+        <p>配っているのは Windows 版だけです。Linux・macOS（Apple Silicon）は、ソースからビルドすると、エンジンとコマンドラインでの書き出しまで使えます。</p>
+        <p>展開したフォルダの <code>samples</code> に、一般的な動画編集とゆっくり解説のサンプルプロジェクトがあります。</p>
+
+        <h2 id="features">できること</h2>
+        <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">分野</th><th scope="col">内容</th></tr></thead>
+          <tbody>
+            <tr><td>編集</td><td>タイムライン（レイヤーの表示・ロック・ミュート・ソロ、移動・トリム・分割・リップル・ロール、コピーと貼り付け、グループ化、マーカー、範囲、スナップ）、元に戻す・やり直し、キーフレームとイージング、合成モード、速度変更と逆再生</td></tr>
+            <tr><td>素材</td><td>動画・画像・音声の読み込み（ドラッグ＆ドロップ）、サムネイルと波形、リンク切れの再指定</td></tr>
+            <tr><td>映像</td><td>エフェクト 15 種類、トランジション 7 種類、テキスト（縁取り・影・背景・縦書き・一文字ずつの表示・プリセット）、図形</td></tr>
+            <tr><td>音声</td><td>音量・パン・フェード、音の高さを保った速度変更、ラウドネスの調整、BGM のダッキング、レベルメーター</td></tr>
+            <tr><td>セリフ</td><td>キャラクター、セリフ入力欄、台本の一括貼り付け、立ち絵（口パク・目パチ）、字幕（SRT の読み込みと書き出し）</td></tr>
+            <tr><td>録音</td><td>タイムラインへの録音（再生しながらも可）、セリフごとの収録、入出力の遅れの補正</td></tr>
+            <tr><td>プレビュー</td><td>J/K/L、コマ送り、解像度の切り替え、全画面、グリッドとセーフエリア、ドラッグでの移動・拡大・回転</td></tr>
+            <tr><td>書き出し</td><td>MP4（H.264・HEVC、ハードウェアエンコード）、プリセット（YouTube 1080p・縦長など）、範囲、WAV、静止画</td></tr>
+            <tr><td>そのほか</td><td>自動保存と復元、ショートカットの変更</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>x264・x265 で書き出したいときは、自分で入手した ffmpeg を設定の「全般」で指定します（同梱の FFmpeg は、GPL の部品と x264 を含まないものです）。</p>
+
+        <h2 id="voice">セリフの読み上げ</h2>
+        <p>セリフの読み上げには、同梱の ColorfulTalk（旧版）と、Windows の SAPI が使えます。</p>
+        <p>ColorfulTalk は漢字を読めません。漢字や英数字を含むセリフは、セリフ入力欄の「読み」に、カナとアクセント記号の記号列を入れてください。ひらがな・カタカナだけのセリフは、そのまま読みます。</p>
+        <pre><code>きょ'うわ/い'い/てんきです。</code></pre>
+        <p>記号列の書き方は <a href="../colorful-talk/">ColorfulTalk</a> のページにあります。</p>
+
+        <h2 id="cli">コマンドライン</h2>
+        <p>同じフォルダの <code>nmm.exe</code> で、画面を出さずに書き出せます。</p>
+        <pre><code>nmm export samples/general/general.nmmproj -o general.mp4 --preset youtube-1080p</code></pre>
+        <pre><code>nmm render-frame samples/yukkuri/yukkuri.nmmproj -f 1.5s -o frame.png</code></pre>
+        <p>出力先の拡張子を <code>.wav</code> にすると、音声だけを書き出します。<code>render-frame</code> は 1 フレームを画像にします。<code>bench</code> で性能を計れます。</p>
+
+        <h2 id="limits">わかっている制限</h2>
+        <ul>
+          <li>描画は CPU で行います。GPU での描画（Vulkan）は次の段階で入れます。</li>
+          <li>基準の PC（Core i5-1145G7）で、10 分の動画の書き出しは実時間の約 2 倍の速さです。</li>
+          <li>本物のマイクでの録音と、実際の立ち絵の素材での表示は、まだ十分に確かめていません。</li>
+        </ul>
+        <p>README には、これから入れる予定の機能も書いてあります。いま入っているのは、上の「できること」のものです。</p>
+
+        <h2 id="build">ソースからビルドする</h2>
+        <p>.NET 10 SDK、PowerShell 7（Windows）か bash（Linux・macOS）、CMake と C コンパイラ、FFmpeg のビルドに使うもの（Windows は MSYS2）が要ります。くわしくは <a href="https://github.com/ukagaka-irono/NakkuntMovieMaker#ビルドと実行">README の「ビルドと実行」</a>を見てください。</p>
+        <pre><code>pwsh tools/fetch-native.ps1</code></pre>
+        <pre><code>pwsh tools/build-native.ps1</code></pre>
+        <pre><code>dotnet build NakkuntMovieMaker.slnx</code></pre>
+        <pre><code>dotnet run --project src/NakkuntMovieMaker.App</code></pre>
+        <p>Linux・macOS では <code>./tools/fetch-native.sh</code> と <code>./tools/build-native.sh</code> を使います。画面は Windows だけです。</p>
+
+        <h2 id="license">ライセンス</h2>
+        <p>MIT ライセンスです。同梱しているもの（FFmpeg は LGPL-3.0 など）のライセンスは、zip の中の <code>THIRD-PARTY-NOTICES.md</code> と <code>licenses</code> フォルダにあります。</p>
+      </div>
+    </div>
   </main>
 
   <footer class="site-footer">
     <div class="container"><a href="https://github.com/ukagaka-irono">github.com/ukagaka-irono</a></div>
   </footer>
+  <script src="../assets/js/site.js"></script>
 </body>
 </html>

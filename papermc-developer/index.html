@@ -23,7 +23,7 @@
   <main id="main" class="container">
     <p class="breadcrumb"><a href="../">一覧</a> &gt; Minecraft &gt; papermc-developer</p>
     <h1>papermc-developer</h1>
-    <p class="intro">Minecraft の PaperMC（Paper・Folia・Velocity）のプラグインを、AI と一緒に作る・直す・動かして確かめる・配るためのスキルです。日本語で「〜するプラグインを作って」「エラーを直して」と頼むと、AI がこのスキルを使って作業します。Paper 1.7.10 から 26.x まで、どの版向けにも作れます。</p>
+    <p class="intro">Minecraft の PaperMC（Paper・Folia・Velocity）のプラグインを、AI と一緒に作る・直す・動かして確かめる・配るためのスキルです。日本語で「〜するプラグインを作って」「エラーを直して」と頼むと、AI がこのスキルを使って作業します。Paper 1.7.10 から 26.x まで、どの版向けにも作れます。Spigot / CraftBukkit でも動く、Bukkit API だけのプラグインも作れます。</p>
     <p class="meta"><a href="https://github.com/ukagaka-irono/papermc-developer">リポジトリ</a> ・ Claude Code / Codex / Antigravity など ・ Unlicense</p>
 
     <div class="doc">
@@ -69,6 +69,7 @@ claude plugin install papermc-developer --scope project</code></pre>
         templates\
   src\
   build.gradle.kts</code></pre>
+        <p>Claude Code のプラグインには、スキルのほかに、仕様を調べるためのサブエージェント（<code>papermc-researcher</code>）が入っています。</p>
         <p>どのプロジェクトでも使うなら、Codex は <code>%USERPROFILE%\.agents\skills\</code>、Antigravity は <code>%USERPROFILE%\.gemini\antigravity\skills\</code> に置きます。</p>
 
         <h2 id="usage">使い方</h2>
@@ -77,6 +78,8 @@ claude plugin install papermc-developer --scope project</code></pre>
 夜をスキップする投票のプラグインを作りたい
 Folia でも動くようにして
 Velocity のプラグインを作って
+Spigot でも動くように作って
+プレイヤーのデータを MySQL に保存できるようにして
 /home コマンドを足して
 チェックして
 サーバーで動かして見せて
@@ -95,7 +98,7 @@ Paper を最新にして</code></pre>
         <p>落としてきた Gradle やサーバーの jar、テストサーバー、設定は、<code>%LOCALAPPDATA%\papermc-developer</code> に置かれます（<code>PAPERMCDEV_HOME</code> で変えられます）。</p>
 
         <h2 id="server">テストサーバー</h2>
-        <p>ふだん使っているサーバーとは別に、プロジェクトごとのテスト用サーバーを作ります。<code>127.0.0.1</code> だけで待ち受けるので、ほかの PC からは入れません。自分のクライアントで <code>localhost</code> に入って触れます。AI は RCON でコマンドを送って結果を見ます。</p>
+        <p>ふだん使っているサーバーとは別に、プロジェクトごとのテスト用サーバーを作ります。Paper・Folia・Spigot・CraftBukkit のサーバーか、Velocity のプロキシとその後ろの Paper サーバーです。Spigot と CraftBukkit は、了承を得てから BuildTools で作ります。<code>127.0.0.1</code> だけで待ち受けるので、ほかの PC からは入れません。自分のクライアントで <code>localhost</code> に入って触れます。AI は RCON でコマンドを送って結果を見ます。</p>
         <p>自分のターミナルでコンソールを触りたいときは、ひな形に入っている <code>./gradlew runServer</code> も使えます。</p>
 
         <h2 id="permissions">許可の確認を減らす</h2>

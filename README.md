@@ -21,6 +21,7 @@ uemoto_and_rahuu/update/   植本とラフウのネットワーク更新ファ�
 maid_classic/              バルーン「Maid Classic」の配布ページ（index.html）と nar
 maid_classic/update/       Maid Classic のネットワーク更新ファイル（バルーンの descript.txt の homeurl）
 tama-v6/                   tama v6 の配布ページ（index.html）と、リリースの tama.exe / tama_NUPX.exe / tamac.exe
+kairanban/                 回覧板の配布ページ（index.html）と nar（リポジトリは非公開）
 ```
 
 植本とラフウの nar と `uemoto_and_rahuu/update/` は、ゴーストのリポジトリ（非公開）の

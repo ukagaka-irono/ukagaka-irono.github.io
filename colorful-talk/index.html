@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ColorfulTalk の使い方 - ukagaka-irono</title>
+  <meta name="description" content="小さな機器でも動く、無料（MIT）の日本語音声合成エンジンのシリーズ ColorfulTalk と、読み上げアプリ ColorfulTalkPlayer の使い方。">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/theme.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../">ukagaka-irono</a>
+      <nav class="site-nav" aria-label="サイト">
+        <a href="../">一覧</a>
+        <a href="https://github.com/ukagaka-irono">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <p class="breadcrumb"><a href="../">一覧</a> &gt; 音声合成 &gt; ColorfulTalk</p>
+    <h1>ColorfulTalk</h1>
+    <p class="intro">小さな機器でも気軽に動かせる、無料（MIT ライセンス）の日本語音声合成エンジンのシリーズです。録音した声を使わない規則合成（フォルマント合成）なので、声データのライセンスを気にせず組み込んで配れます。</p>
+    <p class="meta">2026年11月5日 ・ C ・ MIT（辞書は BSD 3-Clause） ・ <a href="https://github.com/ukagaka-irono/ColorfulTalk">仕様書のリポジトリ</a></p>
+
+    <div class="doc">
+      <nav class="toc" aria-labelledby="toc-title">
+        <h2 id="toc-title">目次</h2>
+        <ol>
+          <li><a href="#products">シリーズの中身</a></li>
+          <li><a href="#player">ColorfulTalkPlayer</a></li>
+          <li><a href="#how">しくみ</a></li>
+          <li><a href="#koe">記号列の書き方</a></li>
+          <li><a href="#v3">V3</a></li>
+          <li><a href="#v2">V2</a></li>
+          <li><a href="#v1">V1</a></li>
+          <li><a href="#nano">nano</a></li>
+          <li><a href="#pico">pico LSI</a></li>
+          <li><a href="#yomi">ColorfulYomi と辞書</a></li>
+          <li><a href="#old">旧版（colorful-talk）</a></li>
+          <li><a href="#license">ライセンス</a></li>
+        </ol>
+      </nav>
+
+      <div class="content">
+        <h2 id="products">シリーズの中身</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">名前</th><th scope="col">種類</th><th scope="col">動くところ</th><th scope="col">版</th></tr></thead>
+            <tbody>
+              <tr><td><a href="#player">ColorfulTalkPlayer</a></td><td>読み上げアプリ</td><td>ブラウザ・Windows・Mac</td><td>1.0.0</td></tr>
+              <tr><td><a href="#v3">ColorfulTalk V3</a></td><td>音声合成エンジン</td><td>32bit（Cortex-M4F・ESP32 など）・PC</td><td>3.0.0</td></tr>
+              <tr><td><a href="#v2">ColorfulTalk V2</a></td><td>音声合成エンジン</td><td>16bit CPU 以上</td><td>2.0.0</td></tr>
+              <tr><td><a href="#v1">ColorfulTalk V1</a></td><td>音声合成エンジン</td><td>16bit CPU 以上</td><td>1.0.0</td></tr>
+              <tr><td><a href="#nano">ColorfulTalk nano</a></td><td>音声合成エンジン</td><td>8bit CPU</td><td>1.0.0</td></tr>
+              <tr><td><a href="#pico">ColorfulTalk pico LSI</a></td><td>音声合成 LSI の設計図</td><td>ATmega328P</td><td>1.0.0</td></tr>
+              <tr><td><a href="#yomi">ColorfulYomi</a></td><td>言語処理エンジン</td><td>PC</td><td>1.0.0</td></tr>
+              <tr><td><a href="#yomi">Colorful-dictionary</a></td><td>読み・アクセント辞書</td><td>―</td><td>版 1</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>まず声を聞いてみるなら、ColorfulTalkPlayer の Web 版がいちばん手軽です。機器に組み込むなら、ふつうは V3 を、メモリの小さいマイコンには V2・V1・nano を選びます。</p>
+
+        <h2 id="player">ColorfulTalkPlayer</h2>
+        <p>ColorfulTalk の公式の読み上げアプリです。文章を読み上げたり、WAV ファイルに書き出したりできます。</p>
+        <ul>
+          <li>漢字かな交じり文をそのまま読み上げます（ColorfulYomi で読みとアクセントを付けます）。変換した記号列を見て、直してから読み上げることもできます。</li>
+          <li>エンジン 4 種（V3・V2・V1・nano）、声 31 種。話速・音量、V3 では声の高さ・抑揚・声質もスライダーで変えられます。</li>
+          <li>設定のプリセット、ユーザー辞書、WAV の保存（44.1kHz・48kHz への変換も）。</li>
+          <li>音声は使っている機器の中で作り、外には送りません。</li>
+        </ul>
+        <p><strong><a href="https://ukagaka-irono.github.io/ColorfulTalkPlayer/">Web 版を開く</a></strong>（入れなくても、ブラウザだけで動きます。はじめは辞書 26MB を読み込みます）</p>
+        <p>Windows・Mac 版は、<a href="https://github.com/ukagaka-irono/ColorfulTalkPlayer/releases/tag/v1.0.0">リリース 1.0.0</a> から落とします。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">ファイル</th><th scope="col">対象</th></tr></thead>
+            <tbody>
+              <tr><td><code>ColorfulTalkPlayer_1.0.0_x64-setup.exe</code></td><td>Windows（インストーラー、約 9 MB）</td></tr>
+              <tr><td><code>ColorfulTalkPlayer_1.0.0_universal.dmg</code></td><td>Mac（約 18 MB）</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>署名していないので、はじめて起動するときに警告が出ます。Windows・Mac 版はコマンドラインからも読み上げられます。</p>
+        <pre><code>ColorfulTalkPlayer -t "今日はいい天気です。" -o out.wav -v v3:f1 -s 1.2</code></pre>
+
+        <h2 id="how">しくみ</h2>
+        <p>音声合成エンジンは辞書を持たず、読みとアクセントを書いた「記号列」を受け取って音にします。漢字かな交じり文を読ませるときは、言語処理エンジン ColorfulYomi で記号列に変えてから渡します。</p>
+        <pre><code>漢字かな交じり文 → ColorfulYomi（辞書を使う）→ カナ記号列 → V1 / V2 / V3 → 音声
+                                         └→ ローマ字記号列 → nano / pico LSI → 音声</code></pre>
+
+        <h2 id="koe">記号列の書き方</h2>
+        <p>読みをカナで書き、アクセントの下がり目（アクセント核）のあとに <code>'</code> を、句の区切りに <code>/</code> <code>、</code> <code>。</code> <code>？</code> を書きます。V1・V2・V3 は同じカナ記号列を使います。</p>
+        <pre><code>こんにちわ、せか'い。
+きょ'うわ/い'い/てんきです。
+ほんとうに/そ'うですか？</code></pre>
+        <p>nano と pico LSI は、同じ決まりをローマ字で書きます（<code>kyo'uwa/i'i/teNkidesu.</code>）。くわしくは仕様書の <a href="https://github.com/ukagaka-irono/ColorfulTalk/blob/main/docs/spec/koe-kana.md">カナ記号列</a> と <a href="https://github.com/ukagaka-irono/ColorfulTalk/blob/main/docs/spec/koe-roman.md">ローマ字記号列</a> にあります。</p>
+
+        <h2 id="v3">ColorfulTalk V3</h2>
+        <p>シリーズでいちばん新しく、いちばん自然で聞き取りやすい声のエンジンです。声質をパラメータで変えられます。</p>
+        <ul>
+          <li>出力は 16bit PCM、モノラル、16kHz（8〜48kHz に変えられます）。</li>
+          <li>作業領域は約 15KB、動的メモリは使いません。単精度浮動小数点だけを使うので、FPU のある Cortex-M4F や ESP32、PC で動きます。</li>
+          <li>声は女声・男声・子どものプリセット。声の高さ・声道の長さ・張り・息っぽさ・ゆらぎ・抑揚・話速・音量を指定できます。</li>
+        </ul>
+        <p>Windows 用のビルド済みのもの（ライブラリと試聴用の <code>ctalk</code>）は <a href="https://github.com/ukagaka-irono/ColorfulTalk-V3/releases/tag/v3.0.0">リリース 3.0.0</a> にあります。</p>
+        <pre><code>ctalk -v m1 -s 1.2 -o hello.wav "きょ'うわ/い'い/てんきです。"</code></pre>
+        <p>組み込み方やビルドは <a href="https://github.com/ukagaka-irono/ColorfulTalk-V3">ColorfulTalk-V3 の README</a> を見てください。</p>
+
+        <h2 id="v2">ColorfulTalk V2</h2>
+        <p>声を決める小さなデータ（<code>.ctv</code>、1 つ 212 バイト）を差しかえて、動いているあいだに声を切りかえられるエンジンです。</p>
+        <ul>
+          <li>整数演算だけで動きます。<code>int</code> が 16bit の CPU でも PC と同じ音が出ます。</li>
+          <li>ROM 約 24KB、RAM 約 4.7KB。出力は 16bit PCM、8kHz、モノラル。</li>
+          <li>14 種類の声データ入り（女声 5・男声 4・子ども 2・年配・ささやき・ロボット）。<code>mkvoice</code> で自分の声も作れます。</li>
+        </ul>
+        <p>ビルド済みのものは <a href="https://github.com/ukagaka-irono/ColorfulTalk-V2/releases/tag/v2.0.0">リリース 2.0.0</a>、くわしくは <a href="https://github.com/ukagaka-irono/ColorfulTalk-V2">README</a> にあります。</p>
+
+        <h2 id="v1">ColorfulTalk V1</h2>
+        <p>声を 1 種類だけ組み込んだ、小さな構成のエンジンです。</p>
+        <ul>
+          <li>整数演算だけで動きます。ROM 約 24KB、RAM 約 5.4KB。出力は 16bit PCM、8kHz、モノラル。</li>
+          <li>声はビルドするときに 1 種類を選びます。標準は女声 <code>F1</code> で、ほかに 9 種類あります。</li>
+        </ul>
+        <p>ビルド済みのものは <a href="https://github.com/ukagaka-irono/ColorfulTalk-V1/releases/tag/v1.0.0">リリース 1.0.0</a>、くわしくは <a href="https://github.com/ukagaka-irono/ColorfulTalk-V1">README</a> にあります。</p>
+
+        <h2 id="nano">ColorfulTalk nano</h2>
+        <p>シリーズでいちばん小さいエンジンです。RAM 約 200 バイト・ROM 約 8KB で、8bit CPU でもリアルタイムに話します。</p>
+        <ul>
+          <li>ATmega328P（16MHz）で、8kHz の実時間に収まります。表はすべて ROM に置きます。</li>
+          <li>入力はローマ字の記号列。出力は 8kHz の 16bit か、PWM にそのまま使える 8bit。</li>
+          <li>声は 4 種類（女声・男声・子ども・ロボット）。</li>
+        </ul>
+        <p>ビルド済みのものは <a href="https://github.com/ukagaka-irono/ColorfulTalk-nano/releases/tag/v1.0.0">リリース 1.0.0</a>、くわしくは <a href="https://github.com/ukagaka-irono/ColorfulTalk-nano">README</a> にあります。</p>
+
+        <h2 id="pico">ColorfulTalk pico LSI</h2>
+        <p>nano を ATmega328P（Arduino Uno と同じチップ）に載せた、1 チップの音声合成 LSI の設計図です。ファームウェア・回路図・部品表がそろっています。</p>
+        <ul>
+          <li>UART（9600bps）か I2C（0x2E）で記号列を 1 行送ると話します。話し終わると <code>&gt;</code> を返し、BUSY ピンも下がります。</li>
+          <li>音声は PWM で出し、RC フィルタとアンプでスピーカーを鳴らします。部品は 10 点ほどです。</li>
+          <li>シミュレータで動作を確かめています。I2C と実機での動作は、まだ確かめていません。</li>
+        </ul>
+        <p>作り方は <a href="https://github.com/ukagaka-irono/ColorfulTalk-picoLSI">ColorfulTalk-picoLSI の README</a> にあります。</p>
+
+        <h2 id="yomi">ColorfulYomi と Colorful-dictionary</h2>
+        <p>ColorfulYomi は、漢字かな交じり文を記号列に変える言語処理エンジンです。</p>
+        <pre><code>今日はいい天気ですね。
+→ きょ'ーわ/い'い/て'んきですね。      （V1 / V2 / V3 用）
+→ kyo'-wa/i'i/te'Nkidesune.            （nano / pico LSI 用）</code></pre>
+        <ul>
+          <li>約 48 万語の辞書（Colorful-dictionary）で、読み・アクセント・句の区切りを決めます。日常文 100 文で、読みの一致率は 97% です。</li>
+          <li>数・日付・助数詞の音の変化（3本・6分・1人）・英字も読みます。ユーザー辞書（CSV）で読みとアクセントを足せます。</li>
+          <li>C99 で、ほかのライブラリは使いません。コマンド <code>cyomi</code> もあります。</li>
+        </ul>
+        <p>辞書ファイル <code>colorful_talk.dic</code>（26MB）は <a href="https://github.com/ukagaka-irono/Colorful-dictionary/releases/tag/v1">Colorful-dictionary のリリース（版 1）</a> から落とします。辞書を同梱して配るときは、辞書の <code>NOTICE</code> もいっしょに入れてください。くわしくは <a href="https://github.com/ukagaka-irono/ColorfulYomi">ColorfulYomi</a> と <a href="https://github.com/ukagaka-irono/Colorful-dictionary">Colorful-dictionary</a> の README にあります。</p>
+
+        <h2 id="old">旧版（colorful-talk）</h2>
+        <p>シリーズの前に作った 1 本のエンジン <a href="https://github.com/ukagaka-irono/colorful-talk">colorful-talk</a> は、更新を終えて読み取り専用にしています。いまは <a href="../nakkunt-movie-maker/">NakkuntMovieMaker</a> に同梱して使っています。新しく使うときは、V3 などのシリーズを使ってください。</p>
+
+        <h2 id="license">ライセンス</h2>
+        <p>すべて MIT ライセンスです。ただし Colorful-dictionary の辞書データは、もとにした辞書（Open JTalk の mecab-naist-jdic）のライセンス、BSD 3-Clause にしたがいます。</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><a href="https://github.com/ukagaka-irono">github.com/ukagaka-irono</a></div>
+  </footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>
