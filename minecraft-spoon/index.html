@@ -24,7 +24,7 @@
     <p class="breadcrumb"><a href="../">一覧</a> &gt; Minecraft &gt; Spoon</p>
     <h1>Spoon（MinecraftSpoon）</h1>
     <p class="intro">Minecraft 1.7.10 の Minecraft Forge 10.13.4.1614 をもとにしたものです。Forge と FML のパッケージ・mod ID・版の数字はそのまま残してあるので、いまある 1.7.10 の Forge の mod が、そのまま読みこめます。そのうえで、日本語入力（IME）を使いやすくしたり、看板にカーソルを付けたりしています。</p>
-    <p class="meta"><a href="https://github.com/ukagaka-irono/MinecraftSpoon">リポジトリ</a> ・ <a href="https://github.com/ukagaka-irono/MinecraftSpoon/releases">Releases</a> ・ 1.0.0-beta.3 ・ Minecraft 1.7.10 ・ Forge 10.13.4.1614 ・ Java 8 ・ Forge Public License</p>
+    <p class="meta"><a href="https://github.com/ukagaka-irono/MinecraftSpoon">リポジトリ</a> ・ <a href="https://github.com/ukagaka-irono/MinecraftSpoon/releases">Releases</a> ・ 1.0.0-beta.4 ・ Minecraft 1.7.10 ・ Forge 10.13.4.1614 ・ Java 8 ・ Forge Public License</p>
 
     <div class="doc">
       <nav class="toc" aria-labelledby="toc-title">
@@ -42,7 +42,7 @@
 
       <div class="content">
         <div class="note">
-          <p>1.0.0-beta.3 はベータ版です。試す前にワールドのバックアップを取ってください。不具合があれば <a href="https://github.com/ukagaka-irono/MinecraftSpoon/issues">Issue</a> で知らせてください（報告のしかたは <a href="https://github.com/ukagaka-irono/MinecraftSpoon/blob/spoon/docs/SUPPORT.ja.md">docs/SUPPORT.ja.md</a> にあります）。</p>
+          <p>1.0.0-beta.4 はベータ版です。試す前にワールドのバックアップを取ってください。不具合があれば <a href="https://github.com/ukagaka-irono/MinecraftSpoon/issues">Issue</a> で知らせてください（報告のしかたは <a href="https://github.com/ukagaka-irono/MinecraftSpoon/blob/spoon/docs/SUPPORT.ja.md">docs/SUPPORT.ja.md</a> にあります）。</p>
         </div>
 
         <h2 id="changes">Forge から変えたところ</h2>
@@ -52,10 +52,11 @@
           <li>全角の英字（ｋ など）の幅を、描いている幅どおりに数えるので、それを含む中央ぞろえの文字が左にずれません。</li>
           <li>mod の一覧を Mod Menu 風にしています。左に検索・並べかえ・ロゴのアイコンと印、右に説明（Website と Config のボタン、押せるリンク、流れる文字）があり、「mods フォルダを開く」ボタンもあります。Forge のもとの一覧（GuiModList）は変えずに残してあるので、それを広げている mod（EnderCore など）も動きます。ポーズ画面の「Mod の設定...」からも、この一覧が開きます（Forge 1.7.10 では作りかけで、仮の文字しか出ませんでした）。設定画面のない mod では、ボタンが「設定ファイル」か「設定フォルダー」になり、その mod の設定ファイルを開きます。</li>
           <li>タイトル画面から Minecraft Realms をなくし、その場所に横長の「Mods」ボタン（日本語では「Mod」）を置いています。</li>
-          <li>起動が速くなります（mod を探すときにメソッドの中身を読まない）。読みこみの段階ごとに、かかった時間を「Spoon startup: …」としてログに出します。</li>
+          <li>起動が速くなります（mod を探すときにメソッドの中身を読まない）。読みこみの段階ごとに、かかった時間を「Spoon startup: …」としてログに出します。mod ごとに、自分の読みこみ（構築・初期化など）にかけた時間も測り、時間のかかった mod を 10 個ログに出します。mod の一覧でも、説明のところに時間が出て、時間の長い順に並べかえられます。</li>
           <li>タイトル画面と F3 には「Spoon &lt;版&gt; (Forge 10.13.4.1614)」と出ます。クライアントとサーバーのブランドは <code>fml,forge,spoon</code> です。</li>
-          <li>新しい版が出ると、タイトル画面で知らせます。起動のときに、このサイトの <a href="promotions_slim.json"><code>promotions_slim.json</code></a>（Forge と同じ形）を読みます。正式版が出るまでは、ベータ版の注意も出ます。いらないときは <code>config/forge.cfg</code> の <code>disableVersionCheck</code> を <code>true</code> にします。</li>
+          <li>新しい版が出ると、タイトル画面で知らせます。起動のときに、このサイトの <a href="promotions_slim.json"><code>promotions_slim.json</code></a>（Forge と同じ形）を読みます。正式版が出るまでは、ベータ版の注意も出ます。いらないときは <code>config/forge.cfg</code> の <code>disableVersionCheck</code> を <code>true</code> にします。タイトル画面はほかの mod に描きかえられることがあるので、mod の一覧でも Spoon に「更新あり」の印が付きます。</li>
           <li>クラッシュレポートの <code>-- Head --</code> に、スタックトレースにコードが出てくる mod（Mixin で入れたコードも）を「Suspected Mods」として書き出します。新しい Forge と同じ形です。</li>
+          <li>クラッシュしたとき、何も言わずにウィンドウが閉じるかわりに、原因らしい mod とクラッシュレポートを出す画面を開きます。レポートやそのフォルダを開くボタンと、レポートをコピーするボタンがあります。画面を閉じるとゲームが終わります。いらないときは <code>config/forge.cfg</code> の <code>crashWindow</code> を <code>false</code> にします。</li>
           <li>設定画面・Spoon の設定・<code>/forge</code> コマンド・ポーズ画面の「Mod の設定...」・mod が足りないときなどの画面を日本語にしています。</li>
         </ul>
 
@@ -64,7 +65,7 @@
         <p>この動きがいらないときは、<code>config/forge.cfg</code> の <code>imeControl</code> を <code>false</code> にします。</p>
 
         <h2 id="get">手に入れる</h2>
-        <p><a href="https://github.com/ukagaka-irono/MinecraftSpoon/releases">Releases</a> から、使い方に合うものを落とします（ファイル名は <code>spoon-1.7.10-10.13.4.1614-spoon1.0.0-beta.3-…</code>）。Forge 1.7.10 と同じく、Java 8 で動かします。</p>
+        <p><a href="https://github.com/ukagaka-irono/MinecraftSpoon/releases">Releases</a> から、使い方に合うものを落とします（ファイル名は <code>spoon-1.7.10-10.13.4.1614-spoon1.0.0-beta.4-…</code>）。Forge 1.7.10 と同じく、Java 8 で動かします。</p>
         <div class="table-wrap">
           <table>
             <thead><tr><th scope="col">ファイル</th><th scope="col">使いみち</th></tr></thead>
