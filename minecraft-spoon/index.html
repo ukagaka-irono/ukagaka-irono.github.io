@@ -24,7 +24,7 @@
     <p class="breadcrumb"><a href="../">一覧</a> &gt; Minecraft &gt; Spoon</p>
     <h1>Spoon（MinecraftSpoon）</h1>
     <p class="intro">Minecraft 1.7.10 の Minecraft Forge 10.13.4.1614 をもとにしたものです。Forge と FML のパッケージ・mod ID・版の数字はそのまま残してあるので、いまある 1.7.10 の Forge の mod が、そのまま読みこめます。そのうえで、日本語入力（IME）を使いやすくしたり、看板にカーソルを付けたりしています。</p>
-    <p class="meta"><a href="https://github.com/ukagaka-irono/MinecraftSpoon">リポジトリ</a> ・ <a href="https://github.com/ukagaka-irono/MinecraftSpoon/releases">Releases</a> ・ 1.0.0-beta.4 ・ Minecraft 1.7.10 ・ Forge 10.13.4.1614 ・ Java 8 ・ Forge Public License</p>
+    <p class="meta"><a href="https://github.com/ukagaka-irono/MinecraftSpoon">リポジトリ</a> ・ <a href="https://github.com/ukagaka-irono/MinecraftSpoon/releases">Releases</a> ・ 1.0.0-beta.5 ・ Minecraft 1.7.10 ・ Forge 10.13.4.1614 ・ Java 8 ・ Forge Public License</p>
 
     <div class="doc">
       <nav class="toc" aria-labelledby="toc-title">
@@ -42,7 +42,7 @@
 
       <div class="content">
         <div class="note">
-          <p>1.0.0-beta.4 はベータ版です。試す前にワールドのバックアップを取ってください。不具合があれば <a href="https://github.com/ukagaka-irono/MinecraftSpoon/issues">Issue</a> で知らせてください（報告のしかたは <a href="https://github.com/ukagaka-irono/MinecraftSpoon/blob/spoon/docs/SUPPORT.ja.md">docs/SUPPORT.ja.md</a> にあります）。</p>
+          <p>1.0.0-beta.5 はベータ版です。試す前にワールドのバックアップを取ってください。不具合があれば <a href="https://github.com/ukagaka-irono/MinecraftSpoon/issues">Issue</a> で知らせてください（報告のしかたは <a href="https://github.com/ukagaka-irono/MinecraftSpoon/blob/spoon/docs/SUPPORT.ja.md">docs/SUPPORT.ja.md</a> にあります）。</p>
         </div>
 
         <h2 id="changes">Forge から変えたところ</h2>
@@ -57,6 +57,8 @@
           <li>新しい版が出ると、タイトル画面で知らせます。起動のときに、このサイトの <a href="promotions_slim.json"><code>promotions_slim.json</code></a>（Forge と同じ形）を読みます。正式版が出るまでは、ベータ版の注意も出ます。いらないときは <code>config/forge.cfg</code> の <code>disableVersionCheck</code> を <code>true</code> にします。タイトル画面はほかの mod に描きかえられることがあるので、mod の一覧でも Spoon に「更新あり」の印が付きます。</li>
           <li>クラッシュレポートの <code>-- Head --</code> に、スタックトレースにコードが出てくる mod（Mixin で入れたコードも）を「Suspected Mods」として書き出します。新しい Forge と同じ形です。</li>
           <li>クラッシュしたとき、何も言わずにウィンドウが閉じるかわりに、原因らしい mod とクラッシュレポートを出す画面を開きます。レポートやそのフォルダを開くボタンと、レポートをコピーするボタンがあります。画面を閉じるとゲームが終わります。いらないときは <code>config/forge.cfg</code> の <code>crashWindow</code> を <code>false</code> にします。</li>
+          <li>ワールドをえらぶ画面に「バックアップ」ボタンがあります（新しい Minecraft と同じ）。えらんだワールドを <code>backups</code> フォルダに <code>&lt;日時&gt;_&lt;フォルダ名&gt;.zip</code> として保存し、終わったら「バックアップフォルダーを開く」で開けます。mod が足りないワールドを開いたときに FML が自動で作るバックアップも、<code>saves</code> ではなく同じところに入ります。</li>
+          <li>スクリーンショット（F2）を撮っても、ゲームが一瞬止まりません。画面を読むのはその場でして、PNG に書き出すのは別のスレッドでします（新しい Minecraft と同じ）。</li>
           <li>設定画面・Spoon の設定・<code>/forge</code> コマンド・ポーズ画面の「Mod の設定...」・mod が足りないときなどの画面を日本語にしています。</li>
         </ul>
 
@@ -65,7 +67,7 @@
         <p>この動きがいらないときは、<code>config/forge.cfg</code> の <code>imeControl</code> を <code>false</code> にします。</p>
 
         <h2 id="get">手に入れる</h2>
-        <p><a href="https://github.com/ukagaka-irono/MinecraftSpoon/releases">Releases</a> から、使い方に合うものを落とします（ファイル名は <code>spoon-1.7.10-10.13.4.1614-spoon1.0.0-beta.4-…</code>）。Forge 1.7.10 と同じく、Java 8 で動かします。</p>
+        <p><a href="https://github.com/ukagaka-irono/MinecraftSpoon/releases">Releases</a> から、使い方に合うものを落とします（ファイル名は <code>spoon-1.7.10-10.13.4.1614-spoon1.0.0-beta.5-…</code>）。Forge 1.7.10 と同じく、Java 8 で動かします。</p>
         <div class="table-wrap">
           <table>
             <thead><tr><th scope="col">ファイル</th><th scope="col">使いみち</th></tr></thead>
