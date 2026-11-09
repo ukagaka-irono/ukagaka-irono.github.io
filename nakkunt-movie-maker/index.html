@@ -23,8 +23,8 @@
   <main id="main" class="container">
     <p class="breadcrumb"><a href="../">一覧</a> &gt; 動画 &gt; NakkuntMovieMaker</p>
     <h1>NakkuntMovieMaker</h1>
-    <p class="intro">動画編集ソフトです。一般的な動画編集と、ゆっくり解説動画を最初から最後まで作るための機能が入っています。</p>
-    <p class="meta"><a href="https://github.com/ukagaka-irono/NakkuntMovieMaker/releases/tag/v0.0.1.1-beta">0.0.1.1 β</a>（2026年11月4日） ・ Windows 10・11（64 ビット） ・ MIT ・ <a href="https://github.com/ukagaka-irono/NakkuntMovieMaker">リポジトリ</a></p>
+    <p class="intro">動画編集ソフトです。一般的な動画編集と、ゆっくり解説動画を最初から最後まで作るための機能が入っています。0.0.2 から、GPU（Vulkan）で描き、色の管理とプロキシ編集もできるようになりました。</p>
+    <p class="meta"><a href="https://github.com/ukagaka-irono/NakkuntMovieMaker/releases/tag/v0.0.2-beta">0.0.2 β</a>（2026年11月8日） ・ Windows 10・11（64 ビット） ・ MIT ・ <a href="https://github.com/ukagaka-irono/NakkuntMovieMaker">リポジトリ</a></p>
 
     <div class="doc">
       <nav class="toc" aria-labelledby="toc-title">
@@ -32,6 +32,7 @@
         <ol>
           <li><a href="#install">入れる</a></li>
           <li><a href="#features">できること</a></li>
+          <li><a href="#gpu">GPU での描画と色</a></li>
           <li><a href="#voice">セリフの読み上げ</a></li>
           <li><a href="#cli">コマンドライン</a></li>
           <li><a href="#limits">わかっている制限</a></li>
@@ -43,14 +44,15 @@
       <div class="content">
         <div class="warn">
           <p>β 版です。保存の形式や操作は、これから変わることがあります。大事なプロジェクトは、こまめにバックアップしてください。</p>
+          <p>0.0.1 のプロジェクトは 0.0.2 で開けますが、0.0.2 で保存したプロジェクトは 0.0.1 では開けません。</p>
         </div>
 
         <h2 id="install">入れる</h2>
         <ol>
-          <li><a href="https://github.com/ukagaka-irono/NakkuntMovieMaker/releases/tag/v0.0.1.1-beta">リリース 0.0.1.1 β</a> から <code>NakkuntMovieMaker-0.0.1.1-beta-win-x64.zip</code>（約 130 MB）を落とします。</li>
+          <li><a href="https://github.com/ukagaka-irono/NakkuntMovieMaker/releases/tag/v0.0.2-beta">リリース 0.0.2 β</a> から <code>NakkuntMovieMaker-0.0.2-beta-win-x64.zip</code>（約 113 MB）を落とします。</li>
           <li>zip を展開して、<code>NakkuntMovieMaker.exe</code> を起動します。.NET を入れる必要はありません。</li>
         </ol>
-        <p>SHA-256: <code>8657df179afe92b10a108c9b9eb9f262a24c46eba3bc2ae972e26e6bf675a8af</code></p>
+        <p>SHA-256: <code>43a7aeb4942cefa94d6a9cb6751a60e2fe4f3fbfa83f4afb83a5146657d44031</code></p>
         <p>配っているのは Windows 版だけです。Linux・macOS（Apple Silicon）は、ソースからビルドすると、エンジンとコマンドラインでの書き出しまで使えます。</p>
         <p>展開したフォルダの <code>samples</code> に、一般的な動画編集とゆっくり解説のサンプルプロジェクトがあります。</p>
 
@@ -73,6 +75,26 @@
         </div>
         <p>x264・x265 で書き出したいときは、自分で入手した ffmpeg を設定の「全般」で指定します（同梱の FFmpeg は、GPL の部品と x264 を含まないものです）。</p>
 
+        <h2 id="gpu">GPU での描画と色</h2>
+        <ul>
+          <li>合成・エフェクト 15 種類・トランジション 7 種類・文字と図形を、GPU（Vulkan）で描きます。使える GPU がないときや、正しく描けないときは、CPU で描きます。</li>
+          <li>設定の「描画」で、描画の方式（自動・GPU・CPU）、使う GPU、GPU のメモリの上限を選べます。状態バーに、いまの描画の方式が出ます。</li>
+          <li>書き出しも速くなりました。基準の PC で、10 分の動画の書き出しが実時間の約 3.9 倍の速さです（0.0.1 は約 2 倍）。Windows では、HEVC などの動画を GPU でデコードします。</li>
+        </ul>
+        <p>GPU で描くには、Vulkan 1.2 以上に対応した GPU とドライバーが要ります（NVIDIA GeForce GTX 900 以降、AMD Radeon RX 400 以降、Intel 第 6 世代 Core の内蔵 GPU 以降など）。</p>
+        <h3>色の管理</h3>
+        <ul>
+          <li>プロジェクトの設定で、合成の色空間（sRGB・リニア）、OpenColorIO の構成、書き出しの色空間を選べます。</li>
+          <li>設定の「描画」で、プレビューを表示するモニターの色空間を選べます。</li>
+          <li>素材の一覧の右クリックで、素材ごとの入力の色空間を選べます。HDR（PQ・HLG）の動画は、SDR にトーンマップして使います。</li>
+        </ul>
+        <h3>プロキシ編集</h3>
+        <p>大きな動画の代わりに、編集用の軽い動画（プロキシ）をプレビューだけで使います。書き出しでは元の動画を使います。</p>
+        <ul>
+          <li>使う範囲（使わない・1080p より大きい動画だけ・すべての動画）は、プロジェクトの設定で選びます。</li>
+          <li>作る・消すは素材の一覧の右クリック、プレビューでの切りかえは「表示」のメニューです。</li>
+        </ul>
+
         <h2 id="voice">セリフの読み上げ</h2>
         <p>セリフの読み上げには、同梱の ColorfulTalk（旧版）と、Windows の SAPI が使えます。</p>
         <p>ColorfulTalk は漢字を読めません。漢字や英数字を含むセリフは、セリフ入力欄の「読み」に、カナとアクセント記号の記号列を入れてください。ひらがな・カタカナだけのセリフは、そのまま読みます。</p>
@@ -83,26 +105,29 @@
         <p>同じフォルダの <code>nmm.exe</code> で、画面を出さずに書き出せます。</p>
         <pre><code>nmm export samples/general/general.nmmproj -o general.mp4 --preset youtube-1080p</code></pre>
         <pre><code>nmm render-frame samples/yukkuri/yukkuri.nmmproj -f 1.5s -o frame.png</code></pre>
-        <p>出力先の拡張子を <code>.wav</code> にすると、音声だけを書き出します。<code>render-frame</code> は 1 フレームを画像にします。<code>bench</code> で性能を計れます。</p>
+        <pre><code>nmm proxy movie.mp4 -o movie.proxy.mp4</code></pre>
+        <p>出力先の拡張子を <code>.wav</code> にすると、音声だけを書き出します。<code>render-frame</code> は 1 フレームを画像に、<code>proxy</code> はプロキシを作ります。<code>export</code>・<code>render-frame</code> では <code>--renderer cpu</code> のように描画の方式（<code>auto</code>・<code>vulkan</code>・<code>cpu</code>）を選べます。<code>probe --gpu</code> で使える GPU の一覧を、<code>bench</code> で性能を見られます。</p>
 
         <h2 id="limits">わかっている制限</h2>
         <ul>
-          <li>描画は CPU で行います。GPU での描画（Vulkan）は次の段階で入れます。</li>
-          <li>基準の PC（Core i5-1145G7）で、10 分の動画の書き出しは実時間の約 2 倍の速さです。</li>
+          <li>GPU での描画は、Intel Iris Xe（Windows）と、CI の Linux・macOS の仮想の GPU で確かめています。NVIDIA・AMD の GPU では、まだ確かめていません。</li>
+          <li>動画を Vulkan Video でデコードする機能は、FFmpeg とドライバーの不具合で落ちることがあるので、試験的な機能として、ふだんは使いません（設定の「描画」で使えます）。</li>
+          <li>立ち絵は、CPU で描いてから GPU に送ります。</li>
           <li>本物のマイクでの録音と、実際の立ち絵の素材での表示は、まだ十分に確かめていません。</li>
         </ul>
         <p>README には、これから入れる予定の機能も書いてあります。いま入っているのは、上の「できること」のものです。</p>
 
         <h2 id="build">ソースからビルドする</h2>
-        <p>.NET 10 SDK、PowerShell 7（Windows）か bash（Linux・macOS）、CMake と C コンパイラ、FFmpeg のビルドに使うもの（Windows は MSYS2）が要ります。くわしくは <a href="https://github.com/ukagaka-irono/NakkuntMovieMaker#ビルドと実行">README の「ビルドと実行」</a>を見てください。</p>
+        <p>.NET 10 SDK、PowerShell 7（Windows）か bash（Linux・macOS）、CMake（3.20 以上）と C・C++ のコンパイラ、FFmpeg のビルドに使うもの（Windows は MSYS2）が要ります。くわしくは <a href="https://github.com/ukagaka-irono/NakkuntMovieMaker#ビルドと実行">README の「ビルドと実行」</a>を見てください。</p>
         <pre><code>pwsh tools/fetch-native.ps1</code></pre>
         <pre><code>pwsh tools/build-native.ps1</code></pre>
+        <p>はじめてのときは、OpenColorIO のビルドに数分かかります。</p>
         <pre><code>dotnet build NakkuntMovieMaker.slnx</code></pre>
         <pre><code>dotnet run --project src/NakkuntMovieMaker.App</code></pre>
         <p>Linux・macOS では <code>./tools/fetch-native.sh</code> と <code>./tools/build-native.sh</code> を使います。画面は Windows だけです。</p>
 
         <h2 id="license">ライセンス</h2>
-        <p>MIT ライセンスです。同梱しているもの（FFmpeg は LGPL-3.0 など）のライセンスは、zip の中の <code>THIRD-PARTY-NOTICES.md</code> と <code>licenses</code> フォルダにあります。</p>
+        <p>MIT ライセンスです。同梱しているもの（FFmpeg は LGPL-3.0、OpenColorIO は BSD-3-Clause など）のライセンスは、zip の中の <code>THIRD-PARTY-NOTICES.md</code> と <code>licenses</code> フォルダにあります。</p>
       </div>
     </div>
   </main>
