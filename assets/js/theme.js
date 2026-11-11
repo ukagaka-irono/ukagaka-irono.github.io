@@ -18,7 +18,8 @@
   const label = () => {
     if (!button) return;
     const dark = current() === "dark";
-    button.textContent = dark ? "ライトにする" : "ダークにする";
+    button.textContent = dark ? "ライト" : "ダーク";
+    button.setAttribute("aria-label", dark ? "ライトモードにする" : "ダークモードにする");
   };
 
   document.addEventListener("DOMContentLoaded", () => {

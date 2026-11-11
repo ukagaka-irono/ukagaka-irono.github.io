@@ -11,8 +11,8 @@ https://ukagaka-irono.github.io/
 ```
 index.html                 トップ（リポジトリの一覧）
 <リポジトリ名>/index.html   各リポジトリの使い方
-assets/css/style.css       全ページ共通のスタイル（色・余白は :root のトークンで決める）
-assets/js/site.js          コードのコピーボタン
+assets/css/style.css       全ページ共通のスタイル（色・書体・余白は :root のトークンで決める）
+assets/js/site.js          コピーボタン・全画面メニュー・ヘッダーの引っ込み
 assets/js/theme.js         ライト／ダークの切りかえ（<head> で読む）
 .nojekyll                  Jekyll を通さずそのまま公開する
 engawa/app/index.html      Engawa のリリースの index.html をそのまま置いたもの（このサイトで動かす版）
@@ -46,7 +46,7 @@ gh release download <タグ> -R ukagaka-irono/tama-v6 -p tama.exe -p tama_NUPX.e
 ```
 
 ページを足すときは、いまあるリポジトリのページをコピーして、見出しと本文を書きかえます。
-トップの `index.html` にもカードを 1 枚足してください。
+トップの `index.html` の一覧にも帯を 1 本足してください。
 
 ## 手元で見る
 

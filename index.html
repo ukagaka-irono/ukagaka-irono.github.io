@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ukagaka-irono</title>
   <meta name="description" content="ukagaka-irono が GitHub で公開しているものの使い方。">
+  <meta name="theme-color" content="#f2f4f7">
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="assets/js/theme.js"></script>
 </head>
@@ -19,79 +20,111 @@
     </div>
   </header>
 
-  <main id="main" class="container">
-    <h1>ukagaka-irono</h1>
-    <p class="intro">GitHub で公開しているものの、入れ方と使い方です。くわしいことや最新のことは、それぞれの README を見てください。</p>
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-inner">
+        <p class="hero-kicker">Ukagaka · Minecraft · Voice · Movie</p>
+        <h1 class="hero-title">
+          <span class="hero-line">ukagaka</span>
+          <span class="hero-line hero-line--outline">irono</span>
+        </h1>
+        <div class="hero-foot">
+          <p class="hero-lead">GitHub で公開しているものの、入れ方と使い方です。くわしいことや最新のことは、それぞれの README を見てください。</p>
+          <ul class="hero-index">
+            <li><span>01</span><a href="#ukagaka">伺か</a></li>
+            <li><span>02</span><a href="#minecraft">Minecraft</a></li>
+            <li><span>03</span><a href="#voice">音声合成</a></li>
+            <li><span>04</span><a href="#movie">動画</a></li>
+            <li><span>05</span><a href="#favorites">気になるもの</a></li>
+          </ul>
+          <div class="hero-cue" aria-hidden="true">Scroll</div>
+        </div>
+      </div>
+    </section>
 
-    <h2 id="ukagaka">伺か</h2>
-    <dl class="projects">
-      <dt><a href="pono-droid/">pono-droid</a><span class="meta">Android</span></dt>
-      <dd>伺かのゴーストを Android で動かすベースウェア。v0.1.0-beta.1。</dd>
+    <div class="container">
+      <section class="project-group" data-reveal>
+        <h2 id="ukagaka">伺か</h2>
+        <dl class="projects">
+          <dt><a href="pono-droid/">pono-droid</a><span class="meta">Android</span></dt>
+          <dd>伺かのゴーストを Android で動かすベースウェア。v0.1.0-beta.1。</dd>
 
-      <dt><a href="engawa/">Engawa</a><span class="meta">ブラウザ</span></dt>
-      <dd>ブラウザで動く伺かのベースウェア。YAYA・里々などのゴーストもそのまま動きます。β 0.1.0。<a href="engawa/app/">このサイトで動かす</a></dd>
+          <dt><a href="engawa/">Engawa</a><span class="meta">ブラウザ</span></dt>
+          <dd>ブラウザで動く伺かのベースウェア。YAYA・里々などのゴーストもそのまま動きます。β 0.1.0。<a href="engawa/app/">このサイトで動かす</a></dd>
 
-      <dt><a href="ukagaka-studio/">伺かスタジオ</a><span class="meta">Windows</span></dt>
-      <dd>ブロックを積んでゴーストを作るアプリ。書き出すと YAYA のゴーストになります。2.0.0-alpha。</dd>
+          <dt><a href="ukagaka-studio/">伺かスタジオ</a><span class="meta">Windows</span></dt>
+          <dd>ブロックを積んでゴーストを作るアプリ。書き出すと YAYA のゴーストになります。2.0.0-alpha。</dd>
 
-      <dt><a href="nashi-shiori-studio-2/">なし栞 2 + なしスタジオ 2</a><span class="meta">Windows</span></dt>
-      <dd>独自の栞「なし栞」と、それを使うゴーストをブロックで作るアプリ。原作者から引き継いだもの。2.0.0-alpha。</dd>
+          <dt><a href="nashi-shiori-studio-2/">なし栞 2 + なしスタジオ 2</a><span class="meta">Windows</span></dt>
+          <dd>独自の栞「なし栞」と、それを使うゴーストをブロックで作るアプリ。原作者から引き継いだもの。2.0.0-alpha。</dd>
 
-      <dt><a href="tama-v6/">tama v6</a><span class="meta">Windows</span></dt>
-      <dd>YAYA / AYA の動作確認とログのリアルタイム表示をするツール。CI 向けのコマンドライン版 tamac 入り。v1.0.3.30。</dd>
+          <dt><a href="tama-v6/">tama v6</a><span class="meta">Windows</span></dt>
+          <dd>YAYA / AYA の動作確認とログのリアルタイム表示をするツール。CI 向けのコマンドライン版 tamac 入り。v1.0.3.30。</dd>
 
-      <dt><a href="kairanban/">回覧板（Kairanban）</a><span class="meta">SSP プラグイン</span></dt>
-      <dd>インストールしたゴーストのネットワーク更新を、まとめて行うプラグイン。0.0.1 β版。</dd>
+          <dt><a href="kairanban/">回覧板（Kairanban）</a><span class="meta">SSP プラグイン</span></dt>
+          <dd>インストールしたゴーストのネットワーク更新を、まとめて行うプラグイン。0.0.1 β版。</dd>
 
-      <dt><a href="uemoto_and_rahuu/">植本とラフウ</a><span class="meta">SSP</span></dt>
-      <dd>頭に植物が生えた植本と、まるくてあたたかいラフウのゴースト。一緒に過ごした時間だけ植物が育ちます。11版。</dd>
+          <dt><a href="uemoto_and_rahuu/">植本とラフウ</a><span class="meta">SSP</span></dt>
+          <dd>頭に植物が生えた植本と、まるくてあたたかいラフウのゴースト。一緒に過ごした時間だけ植物が育ちます。11版。</dd>
 
-      <dt><a href="maid_classic/">Maid Classic</a><span class="meta">SSP</span></dt>
-      <dd>アイボリーの地にプラムの縁取り、金の点線フレームとローズのリボンの、クラシックなメイド風のフリーバルーン。</dd>
-    </dl>
+          <dt><a href="maid_classic/">Maid Classic</a><span class="meta">SSP</span></dt>
+          <dd>アイボリーの地にプラムの縁取り、金の点線フレームとローズのリボンの、クラシックなメイド風のフリーバルーン。</dd>
+        </dl>
+      </section>
 
-    <h2 id="minecraft">Minecraft</h2>
-    <dl class="projects">
-      <dt><a href="hannyou-plugin/">HANNYOU-Plugin</a><span class="meta">Paper 26.1.2</span></dt>
-      <dd>Paper のプラグイン。観戦用のスペクモードと、役職を配る Knights Editor。</dd>
+      <section class="project-group" data-reveal>
+        <h2 id="minecraft">Minecraft</h2>
+        <dl class="projects">
+          <dt><a href="hannyou-plugin/">HANNYOU-Plugin</a><span class="meta">Paper 26.1.2</span></dt>
+          <dd>Paper のプラグイン。観戦用のスペクモードと、役職を配る Knights Editor。</dd>
 
-      <dt><a href="papermc-developer/">papermc-developer</a><span class="meta">Claude Code / Codex など</span></dt>
-      <dd>PaperMC のプラグインを AI と作るためのスキル。</dd>
+          <dt><a href="papermc-developer/">papermc-developer</a><span class="meta">Claude Code / Codex など</span></dt>
+          <dd>PaperMC のプラグインを AI と作るためのスキル。</dd>
 
-      <dt><a href="minecraft-spoon/">Spoon（MinecraftSpoon）</a><span class="meta">Minecraft 1.7.10</span></dt>
-      <dd>Forge 1.7.10 をもとにしたもの。いまの mod がそのまま動き、日本語入力や看板のカーソルが使えます。1.0.0-beta.5。</dd>
+          <dt><a href="minecraft-spoon/">Spoon（MinecraftSpoon）</a><span class="meta">Minecraft 1.7.10</span></dt>
+          <dd>Forge 1.7.10 をもとにしたもの。いまの mod がそのまま動き、日本語入力や看板のカーソルが使えます。1.0.0-beta.5。</dd>
 
-      <dt><a href="tsuribiyori/">Tsuribiyori</a><span class="meta">サーバー</span></dt>
-      <dd>マイクラサーバーです。開発中です。</dd>
+          <dt><a href="tsuribiyori/">Tsuribiyori</a><span class="meta">サーバー</span></dt>
+          <dd>マイクラサーバーです。開発中です。</dd>
 
-      <dt><a href="guardians-horizon/">Guardians Horizon</a><span class="meta">サーバー</span></dt>
-      <dd>マイクラカードバトルサーバーです。開発中です。</dd>
-    </dl>
+          <dt><a href="guardians-horizon/">Guardians Horizon</a><span class="meta">サーバー</span></dt>
+          <dd>マイクラカードバトルサーバーです。開発中です。</dd>
+        </dl>
+      </section>
 
-    <h2 id="voice">音声合成</h2>
-    <dl class="projects">
-      <dt><a href="colorful-talk/">ColorfulTalk</a><span class="meta">C ・ マイコン・PC</span></dt>
-      <dd>小さな機器でも動く、無料の日本語音声合成エンジンのシリーズ。V3・V2・V1・nano と、言語処理エンジン ColorfulYomi、音声合成 LSI の設計図 pico LSI。</dd>
+      <section class="project-group" data-reveal>
+        <h2 id="voice">音声合成</h2>
+        <dl class="projects">
+          <dt><a href="colorful-talk/">ColorfulTalk</a><span class="meta">C ・ マイコン・PC</span></dt>
+          <dd>小さな機器でも動く、無料の日本語音声合成エンジンのシリーズ。V3・V2・V1・nano と、言語処理エンジン ColorfulYomi、音声合成 LSI の設計図 pico LSI。</dd>
 
-      <dt><a href="colorful-talk/#player">ColorfulTalkPlayer</a><span class="meta">ブラウザ・Windows・Mac</span></dt>
-      <dd>ColorfulTalk で文章を読み上げ、WAV に書き出すアプリ。1.0.0。<a href="https://ukagaka-irono.github.io/ColorfulTalkPlayer/">Web 版を開く</a></dd>
-    </dl>
+          <dt><a href="colorful-talk/#player">ColorfulTalkPlayer</a><span class="meta">ブラウザ・Windows・Mac</span></dt>
+          <dd>ColorfulTalk で文章を読み上げ、WAV に書き出すアプリ。1.0.0。<a href="https://ukagaka-irono.github.io/ColorfulTalkPlayer/">Web 版を開く</a></dd>
+        </dl>
+      </section>
 
-    <h2 id="movie">動画</h2>
-    <dl class="projects">
-      <dt><a href="nakkunt-movie-maker/">NakkuntMovieMaker</a><span class="meta">Windows</span></dt>
-      <dd>動画編集ソフト。一般的な動画編集と、ゆっくり解説動画づくりができます。GPU で描きます。0.0.2 β。</dd>
-    </dl>
+      <section class="project-group" data-reveal>
+        <h2 id="movie">動画</h2>
+        <dl class="projects">
+          <dt><a href="nakkunt-movie-maker/">NakkuntMovieMaker</a><span class="meta">Windows</span></dt>
+          <dd>動画編集ソフト。一般的な動画編集と、ゆっくり解説動画づくりができます。GPU で描きます。0.0.2 β。</dd>
+        </dl>
+      </section>
 
-    <h2 id="favorites">気になるもの</h2>
-    <dl class="projects">
-      <dt><a href="free-shells/caution/">気になるフリーシェル</a><span class="meta">伺か</span></dt>
-      <dd>伺かのフリーシェルのうち、気になるものを集めた一覧。名前順・作者別・見た目別で見られ、freeshell Wiki* と配布元につながっています。</dd>
-    </dl>
+      <section class="project-group" data-reveal>
+        <h2 id="favorites">気になるもの</h2>
+        <dl class="projects">
+          <dt><a href="free-shells/caution/">気になるフリーシェル</a><span class="meta">伺か</span></dt>
+          <dd>伺かのフリーシェルのうち、気になるものを集めた一覧。名前順・作者別・見た目別で見られ、freeshell Wiki* と配布元につながっています。</dd>
+        </dl>
+      </section>
+    </div>
   </main>
 
   <footer class="site-footer">
     <div class="container"><a href="https://github.com/ukagaka-irono">github.com/ukagaka-irono</a></div>
   </footer>
+
+  <script src="assets/js/site.js"></script>
 </body>
 </html>
